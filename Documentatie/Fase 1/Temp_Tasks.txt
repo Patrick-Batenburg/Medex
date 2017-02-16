@@ -1,0 +1,38 @@
+Uitgewerkt interview met opdrachtgever: interviewvragen en gespreksverslag
+Hernieuwde opdracht
+Offerte
+Prototype van schermen gebaseerd op interview
+Plan van Aanpak
+Globale planning voor het gehele project in een planningsprogramma.
+Functioneel Ontwerp inclusief taakverdeling
+Use Case diagram en Use Case Templates
+Activiteitendiagrammen
+Technisch Ontwerp inclusief taakverdeling
+Modeldictionary
+Klassendiagram
+Datadictionary
+Sequentiediagrammen
+Taakverdeling Ontwikkelomgeving
+Materialenlijst: Hard- en software van de ontwikkelomgeving
+Back-up procedure
+Verslag over de installatie, configuratie en testen van de testomgeving
+Organisatieonderzoek over reeds gebruikte databases/te gebruiken database
+Het genormaliseerde databaseontwerp (alle normalisatiestappen); bijgewerkte datadictionary
+De database (gebouwd)
+Een procedure voor het aanleveren van databasegegevens
+Taakverdeling voor het realiseren van een applicatie
+Materialen- en middelenlijst voor het realiseren van de applicatie
+Klassendiagram vanuit Visual Studio
+Werkende solution(v1.0.0) die is getoond aan opdrachtgever.
+Gespreksverslag hiervan met mogelijke veranderingen (in revisielog)
+Gedetailleerd (technisch) testplan: integrale systeemtest
+Lijst van test-tools (code-checkers)
+Uitgevoerde test en documentatie van de resultaten van de test
+Aanpassingen aan de applicatie n.a.v. testbevindingen en de documentatie hiervan
+Een implementatieplan (technisch en organisatorisch), besproken met de opdrachtgever
+Een acceptatietest voor de opdrachtgever met uitleg hoe deze uitgevoerd moet worden
+Acceptatietest uitgevoerd en ondertekend door opdrachtgever
+Verslag van de resultaten
+Documentatie van het implementeren van de applicatie in de productieomgeving.
+Evaluatierapport van het implementatietraject, waarin de gegevens, zoals besproken met de opdrachtgever, zijn
+vastgeleg
