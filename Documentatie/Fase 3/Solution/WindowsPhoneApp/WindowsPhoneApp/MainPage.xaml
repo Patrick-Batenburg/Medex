@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="WindowsPhoneApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowsPhoneApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Button Content="Login" HorizontalAlignment="Left" Margin="126,191,0,0" VerticalAlignment="Top" Width="152" Template="{StaticResource ButtonControlTemplate}"/>
+        <Button Content="Registreren" HorizontalAlignment="Left" Margin="126,310,0,0" VerticalAlignment="Top" Template="{StaticResource ButtonControlTemplate}" Width="152"/>
+        <TextBlock HorizontalAlignment="Left" Margin="115,71,0,0" TextWrapping="Wrap" Text="Welkom" VerticalAlignment="Top" FontSize="50"/>
+        <TextBlock HorizontalAlignment="Left" Margin="176,210,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Foreground="White" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="152,327,0,0" TextWrapping="Wrap" Text="Registreren" VerticalAlignment="Top" Foreground="White" FontSize="20" RenderTransformOrigin="0.105,0.755"/>
+
+    </Grid>
+</Page>
