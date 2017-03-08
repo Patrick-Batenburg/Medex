@@ -15,9 +15,9 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FDCCA0FC-84C2-4F22-A206-FAE1FC2C844D}.Debug|Any CPU.ActiveCfg = Debug|ARM
-		{FDCCA0FC-84C2-4F22-A206-FAE1FC2C844D}.Debug|Any CPU.Build.0 = Debug|ARM
-		{FDCCA0FC-84C2-4F22-A206-FAE1FC2C844D}.Debug|Any CPU.Deploy.0 = Debug|ARM
+		{FDCCA0FC-84C2-4F22-A206-FAE1FC2C844D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDCCA0FC-84C2-4F22-A206-FAE1FC2C844D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDCCA0FC-84C2-4F22-A206-FAE1FC2C844D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{FDCCA0FC-84C2-4F22-A206-FAE1FC2C844D}.Debug|ARM.ActiveCfg = Debug|ARM
 		{FDCCA0FC-84C2-4F22-A206-FAE1FC2C844D}.Debug|ARM.Build.0 = Debug|ARM
 		{FDCCA0FC-84C2-4F22-A206-FAE1FC2C844D}.Debug|ARM.Deploy.0 = Debug|ARM

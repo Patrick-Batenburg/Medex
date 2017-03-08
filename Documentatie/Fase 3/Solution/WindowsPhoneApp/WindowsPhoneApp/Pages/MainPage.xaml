@@ -1,0 +1,22 @@
+﻿<Page
+    x:Class="WindowsPhoneApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowsPhoneApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <TextBlock Name="TitleTextBlock" HorizontalAlignment="Left" Margin="115,71,0,0" TextWrapping="Wrap" Text="Welkom" VerticalAlignment="Top" FontSize="50" SelectionChanged="TitleTextBlock_SelectionChanged"/>
+        <Grid Margin="126,191,122,392">
+            <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Template="{StaticResource ButtonControlTemplate}" Click="LoginButton_Click"/>
+            <TextBlock  x:Name="LoginTextBlock" HorizontalAlignment="Left" TextAlignment="Center" Margin="0,17,0,11" TextWrapping="Wrap" Text="Login" VerticalAlignment="Center" Foreground="White" FontSize="20" Width="152" Height="29" RenderTransformOrigin="0.519,0.604" SelectionChanged="LoginTextBlock_SelectionChanged"/>
+        </Grid>
+        <Grid Margin="126,310,122,273">
+            <Button x:Name="RegisterButton" Content="Registreren" HorizontalAlignment="Left" VerticalAlignment="Top" Template="{StaticResource ButtonControlTemplate}" Width="152" Click="RegisterButton_Click"/>
+            <TextBlock x:Name="RegisterTextBlock" HorizontalAlignment="Left" TextAlignment="Center" Margin="0,17,0,0" TextWrapping="Wrap" Text="Registreren" VerticalAlignment="Top" Foreground="White" FontSize="20" RenderTransformOrigin="0.105,0.755" Width="152"/>
+        </Grid>
+    </Grid>
+</Page>

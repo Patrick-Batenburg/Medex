@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsPhoneApp.Models
+namespace WindowsPhoneApp.Entities
 {
     class Tasks
     {
