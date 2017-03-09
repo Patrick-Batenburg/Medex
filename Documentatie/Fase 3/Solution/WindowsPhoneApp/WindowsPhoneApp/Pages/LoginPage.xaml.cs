@@ -20,9 +20,9 @@ namespace WindowsPhoneApp.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class LoginPage : Page
     {
-        public MainPage()
+        public LoginPage()
         {
             this.InitializeComponent();
         }
@@ -38,15 +38,14 @@ namespace WindowsPhoneApp.Pages
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(LoginPage));
         }
 
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private void UsernameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
-        private void LoginTextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
 
         }

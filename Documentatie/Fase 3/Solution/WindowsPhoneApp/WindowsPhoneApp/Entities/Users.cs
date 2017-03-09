@@ -3,36 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsPhoneApp.Database;
 
 namespace WindowsPhoneApp.Entities
 {
     class Users
     {
-        private int Id;
-        private string Username;
-        private string Password;
-        private string Email;
-        private SessionManager SessionManager;
+        private int id;
+        private string username;
+        private string password;
+        private string email;
+        private SessionManager sessionManager;
+        private DatabaseHandler dbHandler;
 
         public Users()
         {
-            SessionManager = new SessionManager();
+            dbHandler = new DatabaseHandler();
+            sessionManager = new SessionManager();
         }
 
         private void Login()
         {
-            SessionManager.HasSessionEnded();
+            sessionManager.HasSessionEnded();
         }
 
         private void Logout()
         {
-            SessionManager.StartTimer();
+            sessionManager.StartTimer();
         }
-
-        [SQLite.AutoIncrement, SQLite.PrimaryKey]
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
     }
 }

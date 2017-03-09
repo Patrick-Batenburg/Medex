@@ -1,12 +1,16 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,6 +19,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using WindowsPhoneApp.Pages;
+using WindowsPhoneApp.Database.Models;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -26,6 +32,8 @@ namespace WindowsPhoneApp
     public sealed partial class App : Application
     {
         private TransitionCollection transitions;
+        public static string DB_NAME = "task";
+        public static string DB_PATH = Path.Combine(Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_NAME + ".sqlite"));
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -36,6 +44,29 @@ namespace WindowsPhoneApp
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
             this.RequestedTheme = ApplicationTheme.Light;
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
+            if (!CheckFileExists("task.sqlite").Result)
+            {
+                using (var db = new SQLiteConnection(DB_PATH))
+                {
+                    db.CreateTable<Users>();
+                    db.CreateTable<UserMeta>();
+                    db.CreateTable<Task>();
+                }
+            }  
+        }
+
+        private async Task<bool> CheckFileExists(string fileName)
+        {
+            try
+            {
+                var store = await Windows.Storage.ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
+                return true;
+            }
+            catch
+            {
+            }
+            return false;
         }
 
         /// <summary>

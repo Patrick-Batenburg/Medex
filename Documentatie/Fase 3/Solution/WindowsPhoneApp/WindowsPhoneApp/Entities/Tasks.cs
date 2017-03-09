@@ -8,13 +8,17 @@ namespace WindowsPhoneApp.Entities
 {
     class Tasks
     {
-        [SQLite.AutoIncrement, SQLite.PrimaryKey]
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public DateTime Date { get; set; }
-        public decimal Duration { get; set; }
-        public string Description { get; set; }
-        public string Remarks { get; set; }
-        public decimal Costs { get; set; } 
+        private int id;
+        private string title;
+        private DateTime date;
+        private decimal duration;
+        private string description;
+        private string remarks;
+        private decimal costs;
+
+        public Tasks()
+        {
+
+        }
     }
 }
