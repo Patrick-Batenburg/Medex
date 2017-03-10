@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -53,12 +54,24 @@ namespace WindowsPhoneApp.Pages
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
+            if (passwordBox.PlaceholderText == repeatPasswordBox.PlaceholderText && passwordBox.PlaceholderText != "")
+            {
 
+            }
+            else
+            {
+                DisplayMessageBox("Incorrect password");
+            }
         }
 
         private void RepeatPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
 
         }
+        private async void DisplayMessageBox(string message)
+        {           
+            MessageDialog msgbox = new MessageDialog(message);
+            await msgbox.ShowAsync();
+        } 
     }
 }
