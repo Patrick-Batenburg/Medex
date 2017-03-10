@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Text.RegularExpressions
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -23,11 +24,12 @@ namespace WindowsPhoneApp.Pages
     /// </summary>
     public sealed partial class RegisterPage : Page
     {
+        bool isEmail;
+
         public RegisterPage()
         {
             this.InitializeComponent();
         }
-
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
@@ -44,7 +46,7 @@ namespace WindowsPhoneApp.Pages
 
         private void EmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            isEmail = Regex.IsMatch(EmailTextBox.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
@@ -54,14 +56,15 @@ namespace WindowsPhoneApp.Pages
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (PasswordBox.Password == RepeatPasswordBox.Password && PasswordBox.Password != "")
-            {
+            if (isEmail == true)
+	        {
 
-            }
+	        }
             else
             {
-                DisplayMessageBox("Incorrect password");
+                DisplayMessageBox("Ingevulde email is ongeldig.");
             }
+
         }
 
         private void RepeatPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
@@ -70,7 +73,7 @@ namespace WindowsPhoneApp.Pages
         }
 
         private async void DisplayMessageBox(string message)
-        {           
+        {
             MessageDialog msgBox = new MessageDialog(message);
             await msgBox.ShowAsync();
         } 
