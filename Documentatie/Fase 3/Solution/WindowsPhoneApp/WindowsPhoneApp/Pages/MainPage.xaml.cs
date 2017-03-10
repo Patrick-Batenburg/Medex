@@ -43,7 +43,7 @@ namespace WindowsPhoneApp.Pages
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(RegisterPage));
         }
 
         private void LoginTextBlock_SelectionChanged(object sender, RoutedEventArgs e)

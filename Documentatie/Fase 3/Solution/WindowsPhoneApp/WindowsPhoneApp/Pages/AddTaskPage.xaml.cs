@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -21,9 +20,9 @@ namespace WindowsPhoneApp.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RegisterPage : Page
+    public sealed partial class AddTaskPage : Page
     {
-        public RegisterPage()
+        public AddTaskPage()
         {
             this.InitializeComponent();
         }
@@ -37,42 +36,63 @@ namespace WindowsPhoneApp.Pages
         {
         }
 
-        private void UsernameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
-        private void EmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void DurationTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private void DatePicker_DateChanged(object sender, DatePickerValueChangedEventArgs e)
         {
-            if (PasswordBox.Password == RepeatPasswordBox.Password && PasswordBox.Password != "")
+
+        }
+
+        private void DurationTimePicker_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
+        {
+
+        }
+
+        private void CostsTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal value;
+
+            if(Decimal.TryParse(CostsTextBox.Text, out value))
             {
 
             }
             else
             {
-                DisplayMessageBox("Incorrect password");
+                CostsTextBox.Text = "";
             }
         }
 
-        private void RepeatPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        private void RemarksTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
-        private async void DisplayMessageBox(string message)
-        {           
-            MessageDialog msgBox = new MessageDialog(message);
-            await msgBox.ShowAsync();
-        } 
+        private void SafeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DurationTimePicker_TimeChanged_1(object sender, TimePickerValueChangedEventArgs e)
+        {
+
+        }
     }
 }
