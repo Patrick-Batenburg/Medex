@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WindowsPhoneApp.Database;
 using WindowsPhoneApp.Database.Models;
+using System.Text.RegularExpressions;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -28,11 +29,11 @@ namespace WindowsPhoneApp.Pages
     public sealed partial class RegisterPage : Page
     {
         DatabaseHandler database = new DatabaseHandler();
+        bool isEmail;
         public RegisterPage()
         {
             this.InitializeComponent();
         }
-
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
@@ -49,7 +50,7 @@ namespace WindowsPhoneApp.Pages
 
         private void EmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            isEmail = Regex.IsMatch(EmailTextBox.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
@@ -58,14 +59,16 @@ namespace WindowsPhoneApp.Pages
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (passwordBox.Password == repeatPasswordBox.Password && passwordBox.Password != "")
+        {    
+            if (isEmail == true)
+	        {
+                if (PasswordBox.Password == RepeatPasswordBox.Password && PasswordBox.Password != "")
             {
                 List<Users> users = database.ReadUsers();
                 bool availableUsername = true;
                 foreach(Users user in users)
                 {
-                    if (usernameTextBox.Text == user.Username)
+                    if (UsernameTextBox.Text == user.Username)
                     {
                         availableUsername = false;
                     }
@@ -74,7 +77,7 @@ namespace WindowsPhoneApp.Pages
                 {
                     try
                     {
-                        database.AddUser(new Users { Username = usernameTextBox.Text, Email = emailTextBox.Text, Password = passwordBox.Password });
+                        database.AddUser(new Users { Username = UsernameTextBox.Text, Email = EmailTextBox.Text, Password = PasswordBox.Password });
                         DisplayMessageBox("Registreren succesvol.");
                     }
                     catch
@@ -87,16 +90,23 @@ namespace WindowsPhoneApp.Pages
             {
                 DisplayMessageBox("Wachtwoord komt niet overeen.");
             }
+	        }
+            else
+            {
+                DisplayMessageBox("Ingevulde email is ongeldig.");
+            }
+
         }
 
         private void RepeatPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
 
         }
+
         private async void DisplayMessageBox(string message)
-        {           
-            MessageDialog msgbox = new MessageDialog(message);
-            await msgbox.ShowAsync();
+        {
+            MessageDialog msgBox = new MessageDialog(message);
+            await msgBox.ShowAsync();
         } 
     }
 }

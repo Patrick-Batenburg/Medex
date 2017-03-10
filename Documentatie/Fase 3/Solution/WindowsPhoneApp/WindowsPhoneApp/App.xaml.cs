@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using WindowsPhoneApp.Pages;
 using WindowsPhoneApp.Database.Models;
+using Windows.Phone.UI.Input;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -45,7 +46,8 @@ namespace WindowsPhoneApp
             this.Suspending += this.OnSuspending;
             this.RequestedTheme = ApplicationTheme.Light;
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
-            if (!CheckFileExists("task.sqlite").Result)
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            /*if (!CheckFileExists("task.sqlite").Result)
             {
                 using (var db = new SQLiteConnection(DB_PATH))
                 {
@@ -53,20 +55,18 @@ namespace WindowsPhoneApp
                     db.CreateTable<UserMeta>();
                     db.CreateTable<Task>();
                 }
-            }  
+            }  */
         }
 
-        private async Task<bool> CheckFileExists(string fileName)
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            try
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame != null && rootFrame.CanGoBack)
             {
-                var store = await Windows.Storage.ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
-                return true;
+                e.Handled = true;
+                rootFrame.GoBack();
             }
-            catch
-            {
-            }
-            return false;
         }
 
         /// <summary>
