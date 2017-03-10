@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Security;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
@@ -13,7 +15,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using System.Text.RegularExpressions
+using WindowsPhoneApp.Database;
+using WindowsPhoneApp.Database.Models;
+using System.Text.RegularExpressions;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -24,8 +28,8 @@ namespace WindowsPhoneApp.Pages
     /// </summary>
     public sealed partial class RegisterPage : Page
     {
+        DatabaseHandler database = new DatabaseHandler();
         bool isEmail;
-
         public RegisterPage()
         {
             this.InitializeComponent();
@@ -55,10 +59,37 @@ namespace WindowsPhoneApp.Pages
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
-        {
+        {    
             if (isEmail == true)
 	        {
-
+                if (PasswordBox.Password == RepeatPasswordBox.Password && PasswordBox.Password != "")
+            {
+                List<Users> users = database.ReadUsers();
+                bool availableUsername = true;
+                foreach(Users user in users)
+                {
+                    if (UsernameTextBox.Text == user.Username)
+                    {
+                        availableUsername = false;
+                    }
+                }
+                if (availableUsername == true )
+                {
+                    try
+                    {
+                        database.AddUser(new Users { Username = UsernameTextBox.Text, Email = EmailTextBox.Text, Password = PasswordBox.Password });
+                        DisplayMessageBox("Registreren succesvol.");
+                    }
+                    catch
+                    {
+                        DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
+                    }
+                }
+            }
+            else
+            {
+                DisplayMessageBox("Wachtwoord komt niet overeen.");
+            }
 	        }
             else
             {
