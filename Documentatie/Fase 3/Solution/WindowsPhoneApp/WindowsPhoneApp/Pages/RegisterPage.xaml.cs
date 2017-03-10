@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Security;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
@@ -13,6 +15,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WindowsPhoneApp.Database;
+using WindowsPhoneApp.Database.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -23,6 +27,7 @@ namespace WindowsPhoneApp.Pages
     /// </summary>
     public sealed partial class RegisterPage : Page
     {
+        DatabaseHandler database = new DatabaseHandler();
         public RegisterPage()
         {
             this.InitializeComponent();
@@ -54,13 +59,33 @@ namespace WindowsPhoneApp.Pages
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (passwordBox.PlaceholderText == repeatPasswordBox.PlaceholderText && passwordBox.PlaceholderText != "")
+            if (passwordBox.Password == repeatPasswordBox.Password && passwordBox.Password != "")
             {
-
+                List<Users> users = database.ReadUsers();
+                bool availableUsername = true;
+                foreach(Users user in users)
+                {
+                    if (usernameTextBox.Text == user.Username)
+                    {
+                        availableUsername = false;
+                    }
+                }
+                if (availableUsername == true )
+                {
+                    try
+                    {
+                        database.AddUser(new Users { Username = usernameTextBox.Text, Email = emailTextBox.Text, Password = passwordBox.Password });
+                        DisplayMessageBox("Registreren succesvol.");
+                    }
+                    catch
+                    {
+                        DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
+                    }
+                }
             }
             else
             {
-                DisplayMessageBox("Incorrect password");
+                DisplayMessageBox("Wachtwoord komt niet overeen.");
             }
         }
 

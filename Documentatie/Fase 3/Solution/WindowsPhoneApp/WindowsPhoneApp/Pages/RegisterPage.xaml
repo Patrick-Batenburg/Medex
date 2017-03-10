@@ -17,7 +17,7 @@
             <TextBox x:Name="usernameTextBox" HorizontalAlignment="Left" Margin="167,23,0,0" VerticalAlignment="Top" Width="223" TextChanged="UsernameTextBox_TextChanged"/>
 
             <TextBlock x:Name="emailTextBlock" HorizontalAlignment="Left" Margin="10,67,0,201" TextWrapping="Wrap" Text="Email:" Foreground="Black" FontSize="20" RenderTransformOrigin="0.105,0.755" Width="152"/>
-            <TextBox x:Name="emailTextBox" HorizontalAlignment="Left" Margin="167,67,0,0" VerticalAlignment="Top" Width="223" TextChanged="EmailTextBox_TextChanged"/>
+            <TextBox x:Name="emailTextBox" InputScope="EmailSmtpAddress" HorizontalAlignment="Left" Margin="167,67,0,0" VerticalAlignment="Top" Width="223" TextChanged="EmailTextBox_TextChanged"/>
 
 
             <TextBlock x:Name="passwordTextBlock" HorizontalAlignment="Left" Margin="10,111,0,157" TextWrapping="Wrap" Text="Wachtwoord:" Foreground="Black" FontSize="20" RenderTransformOrigin="0.105,0.755" Width="152" Height="39"/>
