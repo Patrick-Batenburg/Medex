@@ -30,10 +30,12 @@ namespace WindowsPhoneApp.Pages
     {
         DatabaseHandler database = new DatabaseHandler();
         bool isEmail;
+
         public RegisterPage()
         {
             this.InitializeComponent();
         }
+
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
@@ -59,43 +61,122 @@ namespace WindowsPhoneApp.Pages
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
-        {    
-            if (isEmail == true)
-	        {
-                if (PasswordBox.Password == RepeatPasswordBox.Password && PasswordBox.Password != "")
+        {
+            switch (isEmail)
             {
-                List<Users> users = database.ReadUsers();
-                bool availableUsername = true;
-                foreach(Users user in users)
-                {
-                    if (UsernameTextBox.Text == user.Username)
+                case true:
+                    switch (UsernameTextBox.Text)
                     {
-                        availableUsername = false;
-                    }
-                }
-                if (availableUsername == true )
-                {
-                    try
-                    {
-                        database.AddUser(new Users { Username = UsernameTextBox.Text, Email = EmailTextBox.Text, Password = PasswordBox.Password });
-                        DisplayMessageBox("Registreren succesvol.");
-                    }
-                    catch
-                    {
-                        DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
-                    }
-                }
-            }
-            else
-            {
-                DisplayMessageBox("Wachtwoord komt niet overeen.");
-            }
-	        }
-            else
-            {
-                DisplayMessageBox("Ingevulde email is ongeldig.");
-            }
+                        case "":
+                            DisplayMessageBox("Gebruikersnaam is ongeldig.");
+                            break;
+                        default:
+                            List<Users> users = database.ReadUsers();
 
+                            if (users.Capacity > 0)
+                            {
+                                foreach (Users user in users)
+                                {
+                                    if (UsernameTextBox.Text == user.Username)
+                                    {
+                                        DisplayMessageBox("Gebruikersnaam is al in gebruik.");
+                                    }
+                                    else
+                                    {
+                                        if (UsernameTextBox.Text.Count() > 2)
+                                        {
+                                            switch (PasswordBox.Password)
+                                            {
+                                                case "":
+                                                    DisplayMessageBox("Wachtwoord is ongeldig.");
+                                                    break;
+                                                default:
+                                                    if (PasswordBox.Password == RepeatPasswordBox.Password)
+                                                    {
+                                                        if (RepeatPasswordBox.Password.Count() > 4)
+                                                        {
+                                                            try
+                                                            {
+                                                                database.AddUser(new Users { Username = UsernameTextBox.Text, Email = EmailTextBox.Text, Password = PasswordBox.Password });
+                                                                DisplayMessageBox("Account is succesvol geregistreerd.");
+                                                                Frame.Navigate(typeof(MainPage));
+
+                                                            }
+                                                            catch
+                                                            {
+                                                                DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            DisplayMessageBox("Wachtwoord is te kort.");
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        DisplayMessageBox("Wachtwoord komt niet overeen.");
+                                                    }
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            DisplayMessageBox("Gebruikersnaam is te kort.");
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (UsernameTextBox.Text.Count() > 2)
+                                {
+                                    switch (PasswordBox.Password)
+                                    {
+                                        case "":
+                                            DisplayMessageBox("Wachtwoord is ongeldig.");
+                                            break;
+                                        default:
+                                            if (PasswordBox.Password == RepeatPasswordBox.Password)
+                                            {
+                                                if (RepeatPasswordBox.Password.Count() > 4)
+                                                {
+                                                    try
+                                                    {
+                                                        database.AddUser(new Users { Username = UsernameTextBox.Text, Email = EmailTextBox.Text, Password = PasswordBox.Password });
+                                                        DisplayMessageBox("Account is succesvol geregistreerd.");
+                                                        Frame.Navigate(typeof(MainPage));
+                                                    }
+                                                    catch
+                                                    {
+                                                        DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    DisplayMessageBox("Wachtwoord is te kort.");
+                                                }
+                                            }
+                                            else
+                                            {
+                                                DisplayMessageBox("Wachtwoord komt niet overeen.");
+                                            }
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    DisplayMessageBox("Gebruikersnaam is te kort.");
+                                }
+                            }
+                            break;
+                    }
+                    break;
+                case false:
+                    DisplayMessageBox("Ingevulde email is ongeldig.");
+                    break;
+                default:
+                    break;
+           }
         }
 
         private void RepeatPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
