@@ -1,18 +1,16 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsPhoneApp.Database.Models
+namespace WindowsPhoneApp.Models
 {
-    [Table("tbl_users")]
-    class Users
+    public class User
     {
-        [AutoIncrement, PrimaryKey]
+        [SQLite.AutoIncrement, SQLite.PrimaryKey]
         public int Id { get; set; }
-        [Unique]
+        [SQLite.Unique]
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }

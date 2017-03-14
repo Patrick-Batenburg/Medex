@@ -1,16 +1,14 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsPhoneApp.Database.Models
+namespace WindowsPhoneApp.Models
 {
-    [Table("tbl_tasks")]
-    class Tasks
+    public class Task
     {
-        [AutoIncrement, PrimaryKey]
+        [SQLite.AutoIncrement, SQLite.PrimaryKey]
         public int Id { get; set; }
         public string Title { get; set; }
         public DateTime Date { get; set; }
