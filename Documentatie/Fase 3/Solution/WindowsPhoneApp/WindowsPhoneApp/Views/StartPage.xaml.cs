@@ -15,14 +15,14 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace WindowsPhoneApp.Pages
+namespace WindowsPhoneApp.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LoginPage : Page
+    public sealed partial class StartPage : Page
     {
-        public LoginPage()
+        public StartPage()
         {
             this.InitializeComponent();
         }
@@ -36,16 +36,17 @@ namespace WindowsPhoneApp.Pages
         {
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void UsernameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TaskListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

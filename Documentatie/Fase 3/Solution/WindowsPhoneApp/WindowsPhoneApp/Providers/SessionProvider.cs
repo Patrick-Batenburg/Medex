@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace WindowsPhoneApp
 {
-    class SessionManager
+    class SessionProvider
     {
         private DispatcherTimer timer;
         private int totalHours;
@@ -23,7 +23,7 @@ namespace WindowsPhoneApp
         /// <summary>
         /// SessionManager constructor.
         /// </summary>
-        public SessionManager()
+        public SessionProvider()
         {
             timer = new DispatcherTimer();
             ts = TimeSpan.FromHours(4);
@@ -35,7 +35,7 @@ namespace WindowsPhoneApp
         /// SessionManager custom constructor.
         /// </summary>
         /// <param name="hours">Number of hours.</param>
-        public SessionManager(int hours)
+        public SessionProvider(int hours)
         {
             timer = new DispatcherTimer();
             totalHours = hours;
