@@ -8,7 +8,9 @@ namespace WindowsPhoneApp.Models
 {
     public class UserMeta
     {
+        [SQLite.NotNull]
         public int UserId { get; set; }
+        [SQLite.NotNull]
         public int TaskId { get; set; }
     }
 }

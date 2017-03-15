@@ -19,7 +19,7 @@ using WindowsPhoneApp.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace WindowsPhoneApp.Pages
+namespace WindowsPhoneApp.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -50,7 +50,7 @@ namespace WindowsPhoneApp.Pages
         {
             result = userViewModel.GetUser(UsernameTextBox.Text, EncryptionProvider.Encrypt(PasswordBox.Password));
 
-            if (result.Username != null &&result.Password != null && result.Email != null)
+            if (result.Username != null && result.Password != null && result.Email != null)
             {
                 app.CurrentUserId = result.Id;
                 app.DisplayMessageBox("Welkom " + result.Username);

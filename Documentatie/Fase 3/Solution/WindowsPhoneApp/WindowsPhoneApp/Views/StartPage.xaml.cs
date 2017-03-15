@@ -15,14 +15,14 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace WindowsPhoneApp.Pages
+namespace WindowsPhoneApp.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainMenuPage : Page
+    public sealed partial class StartPage : Page
     {
-        public MainMenuPage()
+        public StartPage()
         {
             this.InitializeComponent();
         }

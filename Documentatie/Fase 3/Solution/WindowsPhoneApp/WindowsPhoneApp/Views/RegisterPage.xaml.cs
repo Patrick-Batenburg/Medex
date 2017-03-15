@@ -22,7 +22,7 @@ using WindowsPhoneApp.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace WindowsPhoneApp.Pages
+namespace WindowsPhoneApp.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -106,7 +106,7 @@ namespace WindowsPhoneApp.Pages
                                                 }
                                                 catch
                                                 {
-                                                   app.DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
+                                                    app.DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
                                                 }
                                             }
                                             else
@@ -145,7 +145,7 @@ namespace WindowsPhoneApp.Pages
                                         }
                                         catch
                                         {
-                                           app.DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
+                                            app.DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
                                         }
                                     }
                                     else
@@ -174,7 +174,7 @@ namespace WindowsPhoneApp.Pages
                     break;
                 default:
                     break;
-           }
+            }
         }
 
         private void RepeatPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
