@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Threading;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using WindowsPhoneApp.Pages;
 using Windows.UI.Xaml.Controls;
 
 namespace WindowsPhoneApp

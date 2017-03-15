@@ -19,7 +19,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using WindowsPhoneApp.Pages;
+using WindowsPhoneApp.Views;
 using Windows.Phone.UI.Input;
 using Windows.Security.Cryptography;
 using Windows.Storage.Streams;

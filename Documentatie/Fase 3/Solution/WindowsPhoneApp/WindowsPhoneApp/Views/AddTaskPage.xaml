@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
     <Grid>
         <Grid Margin="0,0,0,550">
             <TextBlock x:Name="TitlePageTextBlock" TextAlignment="Center" TextWrapping="Wrap" Text="Nieuwe taak" VerticalAlignment="Center" FontSize="50" Height="67" Width="400" Margin="0,12,0,11" />
