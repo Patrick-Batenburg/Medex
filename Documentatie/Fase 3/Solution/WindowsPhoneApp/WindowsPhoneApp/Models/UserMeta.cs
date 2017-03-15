@@ -1,16 +1,16 @@
 ﻿using SQLite;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsPhoneApp.Database.Models
+namespace WindowsPhoneApp.Models
 {
-    [Table("tbl_u_meta")]
-    class UserMeta
+    public class UserMeta
     {
+        [SQLite.NotNull]
         public int UserId { get; set; }
+        [SQLite.NotNull]
         public int TaskId { get; set; }
     }
 }

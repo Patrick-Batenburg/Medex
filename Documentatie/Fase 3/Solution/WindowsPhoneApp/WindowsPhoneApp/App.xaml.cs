@@ -19,9 +19,12 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using WindowsPhoneApp.Pages;
-using WindowsPhoneApp.Database.Models;
+using WindowsPhoneApp.Views;
 using Windows.Phone.UI.Input;
+using Windows.Security.Cryptography;
+using Windows.Storage.Streams;
+using Windows.Security.Cryptography.Core;
+using Windows.UI.Popups;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -33,8 +36,11 @@ namespace WindowsPhoneApp
     public sealed partial class App : Application
     {
         private TransitionCollection transitions;
-        public static string DB_NAME = "task";
-        public static string DB_PATH = Path.Combine(Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_NAME + ".sqlite"));
+        public string DB_PATH { get; set; }
+        public string DB_NAME { get; set; }
+        public string DB_FULLNAME { get; set; }
+        public int CurrentUserId { get; set; }
+
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -47,16 +53,11 @@ namespace WindowsPhoneApp
             this.RequestedTheme = ApplicationTheme.Light;
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-            /*if (!CheckFileExists("task.sqlite").Result)
-            {
-                using (var db = new SQLiteConnection(DB_PATH))
-                {
-                    db.CreateTable<Users>();
-                    db.CreateTable<UserMeta>();
-                    db.CreateTable<Task>();
-                }
-            }  */
+            this.DB_NAME = "task";
+            this.DB_FULLNAME = "task.sqlite";
+            this.DB_PATH = Path.Combine(Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FULLNAME));
         }
+
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
@@ -83,6 +84,12 @@ namespace WindowsPhoneApp
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+            using (var db = new SQLite.SQLiteConnection(DB_PATH))
+            {
+                db.CreateTable<Models.User>();
+                db.CreateTable<Models.Task>();
+                db.CreateTable<Models.UserMeta>();
+            }
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -159,5 +166,11 @@ namespace WindowsPhoneApp
             // TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+        public async void DisplayMessageBox(string message)
+        {
+            MessageDialog msgBox = new MessageDialog(message);
+            await msgBox.ShowAsync();
+        } 
     }
 }
