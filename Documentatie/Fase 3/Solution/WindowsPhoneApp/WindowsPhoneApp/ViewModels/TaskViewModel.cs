@@ -168,19 +168,26 @@ namespace WindowsPhoneApp.ViewModels
                              where userMeta.UserId == app.CURRENT_USER_ID
                              select t).ToList();
 
-                foreach (var _task in query)
+                if (query != null)
                 {
-                    TaskViewModel task = new TaskViewModel()
+                    foreach (var _task in query)
                     {
-                        TaskId = _task.Id,
-                        Title = _task.Title,
-                        Description = _task.Description,
-                        Remarks = _task.Remarks,
-                        Date = _task.Date,
-                        Duration = _task.Duration,
-                        Costs = _task.Costs
-                    };
-                    tasks.Add(task);
+                        TaskViewModel task = new TaskViewModel()
+                        {
+                            TaskId = _task.Id,
+                            Title = _task.Title,
+                            Description = _task.Description,
+                            Remarks = _task.Remarks,
+                            Date = _task.Date,
+                            Duration = _task.Duration,
+                            Costs = _task.Costs
+                        };
+                        tasks.Add(task);
+                    }
+                }
+                else
+                {
+                    tasks = null;
                 }
             }
             return tasks;
@@ -215,21 +222,28 @@ namespace WindowsPhoneApp.ViewModels
                                  Costs = t.Costs
                              });
 
-                foreach (var _task in query)
+                if (query != null)
                 {
-                    TaskViewModel task = new TaskViewModel()
+                    foreach (var _task in query)
                     {
-                        TaskId = _task.TaskId,
-                        UserId = _task.UserId,
-                        Title = _task.Title,
-                        Description = _task.Description,
-                        Remarks = _task.Remarks,
-                        Date = _task.Date,
-                        Duration = _task.Duration,
-                        Costs = _task.Costs
-                    };
+                        TaskViewModel task = new TaskViewModel()
+                        {
+                            TaskId = _task.TaskId,
+                            UserId = _task.UserId,
+                            Title = _task.Title,
+                            Description = _task.Description,
+                            Remarks = _task.Remarks,
+                            Date = _task.Date,
+                            Duration = _task.Duration,
+                            Costs = _task.Costs
+                        };
 
-                    taskInfo.Add(task);
+                        taskInfo.Add(task);
+                    }
+                }
+                else
+                {
+                    taskInfo = null;
                 }
             }
             return taskInfo;

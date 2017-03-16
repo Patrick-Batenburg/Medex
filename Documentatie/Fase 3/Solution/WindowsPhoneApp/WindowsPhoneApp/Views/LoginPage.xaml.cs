@@ -51,7 +51,7 @@ namespace WindowsPhoneApp.Views
         {
             result = userViewModel.GetUser(UsernameTextBox.Text, EncryptionProvider.Encrypt(PasswordBox.Password));
 
-            if (result.Username != null && result.Password != null && result.Email != null)
+            if (result != null)
             {
                 app.CURRENT_USER_ID = result.Id;
                 app.DisplayMessageBox("Welkom " + result.Username);

@@ -121,8 +121,8 @@ namespace WindowsPhoneApp.ViewModels
             {
                 var _user = (from u in db.Table<User>()
                              where u.Username == username && u.Password == password
-                             select u).FirstOrDefault();    
-            
+                             select u).SingleOrDefault();    
+
                 if (_user != null)
                 {
                     user = new UserViewModel()
@@ -132,6 +132,10 @@ namespace WindowsPhoneApp.ViewModels
                         Password = _user.Password,
                         Email = _user.Email
                     };
+                }
+                else
+                {
+                    user = null;
                 }
             }
             return user;
@@ -149,16 +153,23 @@ namespace WindowsPhoneApp.ViewModels
                 var query = (from u in db.Table<User>()
                              select u).ToList();
 
-                foreach (var _user in query)
+                if (query != null)
                 {
-                    UserViewModel user = new UserViewModel()
+                    foreach (var _user in query)
                     {
-                        Id = _user.Id,
-                        Username = _user.Username,
-                        Password = _user.Password,
-                        Email = _user.Email
-                    };
-                    users.Add(user);
+                        UserViewModel user = new UserViewModel()
+                        {
+                            Id = _user.Id,
+                            Username = _user.Username,
+                            Password = _user.Password,
+                            Email = _user.Email
+                        };
+                        users.Add(user);
+                    }
+                }
+                else
+                {
+                    users = null;
                 }
             }
             return users;

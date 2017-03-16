@@ -174,7 +174,7 @@ namespace WindowsPhoneApp.Views
                 if (users.Count > 0)
                 {
                     bool hasSameUsernames = false;
-                    foreach (User user in users)
+                    foreach (UserViewModel user in users)
                     {
                         if (UsernameTextBox.Text.ToLower() == user.Username.ToLower())
                         {
