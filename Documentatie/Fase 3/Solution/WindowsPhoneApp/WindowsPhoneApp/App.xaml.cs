@@ -39,8 +39,7 @@ namespace WindowsPhoneApp
         public string DB_PATH { get; set; }
         public string DB_NAME { get; set; }
         public string DB_FULLNAME { get; set; }
-        public int CurrentUserId { get; set; }
-
+        public int CURRENT_USER_ID { get; set; }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -57,7 +56,6 @@ namespace WindowsPhoneApp
             this.DB_FULLNAME = "task.sqlite";
             this.DB_PATH = Path.Combine(Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FULLNAME));
         }
-
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {

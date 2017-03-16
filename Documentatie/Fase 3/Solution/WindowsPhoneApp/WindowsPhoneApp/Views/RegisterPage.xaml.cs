@@ -31,14 +31,14 @@ namespace WindowsPhoneApp.Views
     {
         private bool isEmail;
         private UserViewModel userViewModel = null;
-        private List<User> users = null;
+        private List<UserViewModel> users = null;
         private App app = (Application.Current as App);
 
         public RegisterPage()
         {
             this.InitializeComponent();
             userViewModel = new UserViewModel();
-            users = new List<User>();
+            users = new List<UserViewModel>();
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace WindowsPhoneApp.Views
 
                         if (users.Count > 0)
                         {
-                            foreach (User user in users)
+                            foreach (UserViewModel user in users)
                             {
                                 if (UsernameTextBox.Text == user.Username)
                                 {

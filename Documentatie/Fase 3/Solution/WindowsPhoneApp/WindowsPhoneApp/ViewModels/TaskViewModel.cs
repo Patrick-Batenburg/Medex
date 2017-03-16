@@ -10,19 +10,35 @@ namespace WindowsPhoneApp.ViewModels
     {
         #region Properties
 
-        private int id = 0;
-        public int Id
+        private int taskId = 0;
+        public int TaskId
         {
             get
-            { return id; }
+            { return taskId; }
 
             set
             {
-                if (id == value)
+                if (taskId == value)
                 { return; }
 
-                id = value;
-                RaisePropertyChanged("Id");
+                taskId = value;
+                RaisePropertyChanged("TaskId");
+            }
+        }
+
+        private int userId = 0;
+        public int UserId
+        {
+            get
+            { return userId; }
+
+            set
+            {
+                if (userId == value)
+                { return; }
+
+                userId = value;
+                RaisePropertyChanged("UserId");
             }
         }
 
@@ -137,20 +153,26 @@ namespace WindowsPhoneApp.ViewModels
         /// <summary>
         /// Retrieve all tasks.
         /// </summary>
-        /// <param name="id">ID of the user to read the task.</param>
         /// <returns>Returns all information about the tasks.</returns>
-        public List<Task> GetTasks(int id)
+        public List<TaskViewModel> GetTasks()
         {
-            List<Task> tasks = new List<Task>();
+            List<TaskViewModel> tasks = new List<TaskViewModel>();
+            List<UserMetaViewModel> userMetas = new List<UserMetaViewModel>();
+            UserMetaViewModel userMetaViewModel = new UserMetaViewModel();
+            userMetas = userMetaViewModel.GetUserMetas();
+
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
-                var query = db.Table<Task>().ToList();
+                var query = (from t in db.Table<Task>()
+                             join userMeta in userMetas on t.Id equals userMeta.TaskId
+                             where userMeta.UserId == app.CURRENT_USER_ID
+                             select t).ToList();
 
                 foreach (var _task in query)
                 {
-                    Task task = new Task()
+                    TaskViewModel task = new TaskViewModel()
                     {
-                        Id = _task.Id,
+                        TaskId = _task.Id,
                         Title = _task.Title,
                         Description = _task.Description,
                         Remarks = _task.Remarks,
@@ -167,33 +189,50 @@ namespace WindowsPhoneApp.ViewModels
         /// <summary>
         /// Retrieve the specific task.
         /// </summary>
-        /// <param name="id">ID of the task to read.</param>
+        /// <param name="taskId">ID of the task to read.</param>
         /// <returns>Returns all information about the task.</returns>
-        public Task GetTask(int id)
+        public List<TaskViewModel> GetTask(int taskId)
         {
-            Task task = new  Task();
+            List<TaskViewModel> taskInfo = new List<TaskViewModel>();
+            List<UserMetaViewModel> userMetas = new List<UserMetaViewModel>();
+            UserMetaViewModel userMetaViewModel = new UserMetaViewModel();
+            userMetas = userMetaViewModel.GetUserMetas();
+
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
-                var _task = (db.Table<Task>().Where(t => t.Id == id)).Single();
+                var query = (from t in db.Table<Task>()
+                             join userMeta in userMetas on t.Id equals userMeta.TaskId
+                             where t.Id == taskId
+                             select new
+                             {
+                                 TaskId = t.Id,
+                                 UserId = userMeta.TaskId,
+                                 Title = t.Title,
+                                 Description = t.Description,
+                                 Remarks = t.Remarks,
+                                 Date = t.Date,
+                                 Duration = t.Duration,
+                                 Costs = t.Costs
+                             });
 
-                if (_task != null)
+                foreach (var _task in query)
                 {
-                    if (_task.Id == id)
+                    TaskViewModel task = new TaskViewModel()
                     {
-                        task = new Task()
-                        {
-                            Id = _task.Id,
-                            Title = _task.Title,
-                            Description = _task.Description,
-                            Remarks = _task.Remarks,
-                            Date = _task.Date,
-                            Duration = _task.Duration,
-                            Costs = _task.Costs
-                        };
-                    }
+                        TaskId = _task.TaskId,
+                        UserId = _task.UserId,
+                        Title = _task.Title,
+                        Description = _task.Description,
+                        Remarks = _task.Remarks,
+                        Date = _task.Date,
+                        Duration = _task.Duration,
+                        Costs = _task.Costs
+                    };
+
+                    taskInfo.Add(task);
                 }
             }
-            return task;
+            return taskInfo;
         }
 
         /// <summary>
@@ -204,16 +243,22 @@ namespace WindowsPhoneApp.ViewModels
         public bool AddTask(Task task)
         {
             bool result = false;
+            bool resultUserMeta = false;
+            List<UserMeta> userMeta = new List<UserMeta>();
+            UserMetaViewModel userMetaViewModel = new UserMetaViewModel();
 
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
                 try
                 {
-                    var existingTask = (db.Table<Task>().Where(u => u.Id == task.Id)).SingleOrDefault();
+                    var existingTask = (from t in db.Table<Task>()
+                                        where t.Id == task.Id
+                                        select t).SingleOrDefault();
 
                     if (existingTask == null)
                     {
                         int success = db.Insert(task);
+                        resultUserMeta = userMetaViewModel.AddUserMeta(new UserMeta() { UserId = app.CURRENT_USER_ID, TaskId = task.Id });
                     }
                     result = true;
                 }
@@ -229,16 +274,18 @@ namespace WindowsPhoneApp.ViewModels
         /// Updates existing task.
         /// </summary>
         /// <param name="task">Helds all information to update task.</param>
-        /// <returns>Returns message on success or failure.</returns>
-        public string UpdateTask(TaskViewModel task)
+        /// <returns>Returns true on success and false on failure.</returns>
+        public bool UpdateTask(Task task)
         {
-            string result = string.Empty;
+            bool result = false;
 
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
                 try
                 {
-                    var existingTask = (db.Table<Task>().Where(t => t.Id == task.Id)).SingleOrDefault();
+                    var existingTask = (from t in db.Table<Task>()
+                                        where t.Id == task.Id
+                                        select t).SingleOrDefault();
 
                     if (existingTask != null)
                     {
@@ -250,11 +297,11 @@ namespace WindowsPhoneApp.ViewModels
                         existingTask.Costs = task.Costs;
                         int success = db.Update(existingTask);
                     }
-                    result = "Success";
+                    result = true;
                 }
                 catch (Exception ex)
                 {
-                    result = "Failure";
+                    result = false;
                 }
             }
             return result;
@@ -264,21 +311,28 @@ namespace WindowsPhoneApp.ViewModels
         /// Deletes a task from the database.
         /// </summary>
         /// <param name="Id">ID of the task to delete.</param>
-        /// <returns>Returns message on success or failure.</returns>
-        public string DeleteTask(int id)
+        /// <returns>Returns true on success and false on failure.</returns>
+        public bool DeleteTask(int taskId)
         {
-            string result = string.Empty;
+            bool result = false;
+            bool resultUserMeta = false;
+            List<UserMeta> userMeta = new List<UserMeta>();
+            UserMetaViewModel userMetaViewModel = new UserMetaViewModel();
+
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
-                var existingTask = (db.Table<Task>().Where(t => t.Id == id)).Single();
+                var existingTask = (from t in db.Table<Task>()
+                                    where t.Id == taskId
+                                    select t).Single();
 
                 if (db.Delete(existingTask) > 0)
                 {
-                    result = "Success";
+                    result = true;
+                    resultUserMeta = userMetaViewModel.DeleteUserMeta(existingTask.Id);
                 }
                 else
                 {
-                    result = "Failure";
+                    result = false;
                 }
             }
             return result;
