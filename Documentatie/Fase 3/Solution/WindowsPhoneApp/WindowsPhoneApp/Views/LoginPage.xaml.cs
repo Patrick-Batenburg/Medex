@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -28,12 +29,12 @@ namespace WindowsPhoneApp.Views
     {
         private App app = (Application.Current as App);
         private UserViewModel userViewModel = null;
-        private User result = null;
+        private UserViewModel result = null;
 
         public LoginPage()
         {
             this.InitializeComponent();
-            result = new User();
+            result = new UserViewModel();
             userViewModel = new UserViewModel();
         }
 
@@ -52,7 +53,7 @@ namespace WindowsPhoneApp.Views
 
             if (result.Username != null && result.Password != null && result.Email != null)
             {
-                app.CurrentUserId = result.Id;
+                app.CURRENT_USER_ID = result.Id;
                 app.DisplayMessageBox("Welkom " + result.Username);
                 this.Frame.Navigate(typeof(MainPage));
             }

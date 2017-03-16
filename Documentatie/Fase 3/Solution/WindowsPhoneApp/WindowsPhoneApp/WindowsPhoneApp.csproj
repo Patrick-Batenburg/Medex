@@ -95,7 +95,6 @@
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\UserMeta.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="ViewModels\UserMetasViewModel.cs" />
     <Compile Include="ViewModels\UserMetaViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Providers\EncryptionProvider.cs" />

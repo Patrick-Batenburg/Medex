@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using WindowsPhoneApp.ViewModels;
+using WindowsPhoneApp.Models;
 
 namespace WindowsPhoneApp.ViewModels
 {
@@ -62,49 +63,75 @@ namespace WindowsPhoneApp.ViewModels
         /// <param name="userId">ID of the user.</param>
         /// <param name="taskId">ID of the task.</param>
         /// <returns>Returns all information about the user meta.</returns>
-        public UserMetaViewModel GetUserMeta(int userId, int taskId)
+        public UserMeta GetUserMeta(int taskId)
         {
-            UserMetaViewModel userMeta = new UserMetaViewModel();
+            UserMeta userMeta = new UserMeta();
 
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
-                var _userMeta = (db.Table<Models.UserMeta>().Where(u => u.UserId == userId && u.TaskId == taskId)).Single();
+                var _userMeta = (from u in db.Table<UserMeta>()
+                                 where u.UserId == app.CURRENT_USER_ID && u.TaskId == taskId
+                                 select u).Single();
+
                 userMeta.UserId = _userMeta.UserId;
-                userMeta.taskId = _userMeta.TaskId;
+                userMeta.TaskId = _userMeta.TaskId;
             }
             return userMeta;
+        }
+
+        /// <summary>
+        /// Retrieve all user meta.
+        /// </summary>
+        /// <returns>Returns all information about the user meta.</returns>
+        public List<UserMetaViewModel> GetUserMetas()
+        {
+            List<UserMetaViewModel> userMetas = new List<UserMetaViewModel>();
+
+            using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
+            {
+                var query = (from u in db.Table<UserMeta>()
+                             where u.UserId == app.CURRENT_USER_ID
+                             select u).ToList();
+
+                foreach (var _user in query)
+                {
+                    UserMetaViewModel userMeta = new UserMetaViewModel()
+                    {
+                        TaskId = _user.TaskId,
+                        UserId = _user.UserId
+                    };
+                    userMetas.Add(userMeta);
+                }
+            }
+            return userMetas;
         }
 
         /// <summary>
         /// Adds a user meta to the database.
         /// </summary>
         /// <param name="userMeta">Helds all information to be inserted into database.</param>
-        /// <returns>Returns message on success or failure.</returns>
-        public string AddUserMeta(UserMetaViewModel userMeta)
+        /// <returns>Returns true on success and false on failure.</returns>
+        public bool AddUserMeta(UserMeta userMeta)
         {
-            string result = string.Empty;
+            bool result = false;
 
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
-                string change = string.Empty;
-
                 try
                 {
-                    var existingUserMeta = (db.Table<Models.UserMeta>().Where(u => u.UserId == userMeta.UserId && u.TaskId == userMeta.TaskId)).SingleOrDefault();
+                    var existingUserMeta = (from u in db.Table<UserMeta>()
+                                            where u.UserId == app.CURRENT_USER_ID && u.TaskId == userMeta.TaskId
+                                            select u).SingleOrDefault();
 
                     if (existingUserMeta == null)
                     {
-                        int success = db.Insert(new Models.UserMeta()
-                        {
-                            UserId = userMeta.UserId,
-                            TaskId = userMeta.TaskId
-                        });
+                        int success = db.Insert(userMeta);
                     }
-                    result = "Taak is succesvol gekoppeld.";
+                    result = true;
                 }
                 catch (Exception ex)
                 {
-                    result = "Er is een onbekent probleem opgetreden, probeer het later opnieuw.";
+                    result = false;
                 }
             }
             return result;
@@ -114,18 +141,18 @@ namespace WindowsPhoneApp.ViewModels
         /// Updates existing user meta.
         /// </summary>
         /// <param name="userMeta">Helds all information to update user.</param>
-        /// <returns>Returns message on success or failure.</returns>
-        public string UpdateUserMeta(UserMetaViewModel userMeta)
+        /// <returns>Returns true on success and false on failure.</returns>
+        public bool UpdateUserMeta(UserMetaViewModel userMeta)
         {
-            string result = string.Empty;
+            bool result = false;
 
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
-                string change = string.Empty;
-
                 try
                 {
-                    var existingUserMeta = (db.Table<Models.UserMeta>().Where(u => u.UserId == userMeta.UserId && u.TaskId == userMeta.TaskId)).SingleOrDefault();
+                    var existingUserMeta = (from u in db.Table<Models.UserMeta>()
+                                            where u.UserId == app.CURRENT_USER_ID && u.TaskId == userMeta.TaskId
+                                            select u).SingleOrDefault();
 
                     if (existingUserMeta != null)
                     {
@@ -133,11 +160,11 @@ namespace WindowsPhoneApp.ViewModels
                         TaskId = userMeta.TaskId;
                         int success = db.Update(existingUserMeta);
                     }
-                    result = "User meta is geupdate.";
+                    result = true;
                 }
                 catch (Exception ex)
                 {
-                    result = "Er is een onbekent probleem opgetreden, probeer het later opnieuw.";
+                    result = false;
                 }
             }
             return result;
@@ -148,34 +175,27 @@ namespace WindowsPhoneApp.ViewModels
         /// </summary>
         /// <param name="userId">ID of the user.</param>
         /// <param name="taskId">ID of the task.</param>
-        /// <returns>Returns message on success or failure.</returns>
-        public string DeleteUserMeta(int userId, int taskId)
+        /// <returns>Returns true on success and false on failure.</returns>
+        public bool DeleteUserMeta(int taskId)
         {
-            string result = string.Empty;
+            bool result = false;
+
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
-                var existingUserMeta = (db.Table<Models.UserMeta>().Where(u => u.UserId == userId && u.TaskId == taskId)).Single();
+                var existingUserMeta = (from u in db.Table<UserMeta>()
+                                        where u.UserId == app.CURRENT_USER_ID && u.TaskId == taskId
+                                        select u).Single();
 
                 if (db.Delete(existingUserMeta) > 0)
                 {
-                    result = "User meta is succesvol verwijderen.";
+                    result = true;
                 }
                 else
                 {
-                    result = "Kan user meta niet verwijderen.";
+                    result = false;
                 }
             }
             return result;
-        }
-
-        private void Login()
-        {
-
-        }
-
-        private void Logout()
-        {
-
         }
     }
 }
