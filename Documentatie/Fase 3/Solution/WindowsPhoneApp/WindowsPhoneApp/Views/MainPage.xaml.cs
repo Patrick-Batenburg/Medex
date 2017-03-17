@@ -38,7 +38,7 @@ namespace WindowsPhoneApp.Views
         }
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(LoginPage));
+            Frame.Navigate(typeof(MainPage));
         }
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {

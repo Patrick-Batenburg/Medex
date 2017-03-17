@@ -106,8 +106,8 @@ namespace WindowsPhoneApp.ViewModels
             }
         }
 
-        private decimal duration = 0;
-        public decimal Duration
+        private TimeSpan duration;
+        public TimeSpan Duration
         {
             get
             { return duration; }
@@ -151,7 +151,7 @@ namespace WindowsPhoneApp.ViewModels
         }
 
         /// <summary>
-        /// Retrieve all tasks.
+        /// Retrieve all tasks of the user.
         /// </summary>
         /// <returns>Returns all information about the tasks.</returns>
         public List<TaskViewModel> GetTasks()

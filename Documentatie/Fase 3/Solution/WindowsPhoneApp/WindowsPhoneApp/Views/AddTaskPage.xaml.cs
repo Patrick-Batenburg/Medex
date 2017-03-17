@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+using System.Xml.Linq;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -10,9 +13,12 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using WindowsPhoneApp.Models;
+using WindowsPhoneApp.Providers;
+using WindowsPhoneApp.ViewModels;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace WindowsPhoneApp.Views
@@ -22,9 +28,19 @@ namespace WindowsPhoneApp.Views
     /// </summary>
     public sealed partial class AddTaskPage : Page
     {
+        private App app = (Application.Current as App);
+        private TaskViewModel taskViewModel = null;
+        private decimal costsValue = 0;
+        private bool isTitle = false;
+        private bool isDescription = false;
+        private bool isCostsDecimal = false;
+        private bool[] isValids;
+
+
         public AddTaskPage()
         {
             this.InitializeComponent();
+            taskViewModel = new TaskViewModel();
         }
 
         /// <summary>
@@ -35,10 +51,17 @@ namespace WindowsPhoneApp.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
-
+        
         private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (TitleTextBox.Text != string.Empty)
+            {
+                isTitle = true;
+            }
+            else
+            {
+                isTitle = false;
+            }
         }
 
         private void DurationTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -48,7 +71,14 @@ namespace WindowsPhoneApp.Views
 
         private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (DescriptionTextBox.Text != string.Empty)
+            {
+                isDescription = true;
+            }
+            else
+            {
+                isDescription = false;
+            }
         }
 
         private void DatePicker_DateChanged(object sender, DatePickerValueChangedEventArgs e)
@@ -63,15 +93,13 @@ namespace WindowsPhoneApp.Views
 
         private void CostsTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            decimal value;
-
-            if (Decimal.TryParse(CostsTextBox.Text, out value))
+            if (Decimal.TryParse(CostsTextBox.Text, out costsValue))
             {
-
+                isCostsDecimal = true;
             }
             else
             {
-                CostsTextBox.Text = "";
+                isCostsDecimal = false;
             }
         }
 
@@ -82,17 +110,60 @@ namespace WindowsPhoneApp.Views
 
         private void SafeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            isValids = new bool[] { isTitle, isDescription, isCostsDecimal };
+            if (isValids.Contains<bool>(false))
+            {
+                //search what cause the problem
+                if (isTitle == false)
+                {
+                    app.DisplayMessageBox("Titel is verplicht");
+                }
+                else if (isDescription == false)
+                {
+                    app.DisplayMessageBox("Omschrijving is verplicht");
+                }
+                else if (isCostsDecimal == false)
+                {
+                    app.DisplayMessageBox("Kosten is ongeldig.");
+                }
+            }
+            else
+            {
+                AddTask();
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(StartPage));
         }
 
-        private void DurationTimePicker_TimeChanged_1(object sender, TimePickerValueChangedEventArgs e)
+        private void AddTask()
         {
+            bool result = false;
 
+            try
+            {
+                result = taskViewModel.AddTask(new Task()
+                {
+                    Title = TitleTextBox.Text,
+                    Date = DatePicker.Date.DateTime,
+                    Duration = DurationTimePicker.Time,
+                    Description = DescriptionTextBox.Text,
+                    Remarks = RemarksTextBox.Text,
+                    Costs = costsValue
+                });
+
+                if (result == true)
+                {
+                    app.DisplayMessageBox("Taak is toegevoegd.");
+                    //Frame.Navigate(typeof(MainPage));
+                }
+            }
+            catch
+            {
+                app.DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
+            }
         }
     }
 }

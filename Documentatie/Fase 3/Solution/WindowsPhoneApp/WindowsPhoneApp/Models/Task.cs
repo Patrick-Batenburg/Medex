@@ -15,7 +15,7 @@ namespace WindowsPhoneApp.Models
         [SQLite.NotNull]
         public DateTime Date { get; set; }
         [SQLite.NotNull]
-        public decimal Duration { get; set; }
+        public TimeSpan Duration { get; set; }
         [SQLite.NotNull]
         public string Description { get; set; }
         [SQLite.NotNull]

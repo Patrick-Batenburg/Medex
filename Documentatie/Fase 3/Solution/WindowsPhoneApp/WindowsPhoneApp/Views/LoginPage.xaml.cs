@@ -55,7 +55,7 @@ namespace WindowsPhoneApp.Views
             {
                 app.CURRENT_USER_ID = result.Id;
                 app.DisplayMessageBox("Welkom " + result.Username);
-                this.Frame.Navigate(typeof(MainPage));
+                this.Frame.Navigate(typeof(StartPage));
             }
             else
             {
