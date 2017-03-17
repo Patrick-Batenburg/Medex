@@ -43,7 +43,6 @@ namespace WindowsPhoneApp.Views
             this.InitializeComponent();
             userViewModel = new UserViewModel();
             users = new List<UserViewModel>();
-            isValids = new bool[] {isUsername, isEmail, isPassword};
         }
 
         /// <summary>
@@ -200,6 +199,7 @@ namespace WindowsPhoneApp.Views
         private void RegisterUser()
         {
             bool result = false;
+
             try
             {
                 result = userViewModel.AddUser(new User() 
