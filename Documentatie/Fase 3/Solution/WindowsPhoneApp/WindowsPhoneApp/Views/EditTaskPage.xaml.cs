@@ -23,12 +23,7 @@ namespace WindowsPhoneApp.Views
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class EditTaskPage : Page
-    {
-        public EditTaskPage()
-        {
-            this.InitializeComponent();
-        }
-        
+    {       
         private App app = (Application.Current as App);
         private TaskViewModel taskViewModel = null;
         private decimal costsValue = 0;
