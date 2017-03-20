@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="WindowsPhoneApp.Views.EditTaskPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowsPhoneApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid Margin="0,0,0,550">
+            <TextBlock x:Name="TitlePageTextBlock" TextAlignment="Center" TextWrapping="Wrap" Text="Wijzigen taak" VerticalAlignment="Center" FontSize="50" Height="67" Width="400" Margin="0,12,0,11" />
+        </Grid>
+        <Grid Margin="0,100,0,500">
+            <TextBlock x:Name="TitleTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Titel:" Foreground="Black" FontSize="20" Width="152"/>
+            <TextBox x:Name="TitleTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="TitleTextBox_TextChanged"/>
+        </Grid>
+        <Grid Margin="0,150,0,450">
+            <TextBlock x:Name="DateTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Datum:" Foreground="Black" FontSize="20" Width="152"/>
+            <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="167,-10,0,-4" VerticalAlignment="Top" Height="54" Width="223" DateChanged="DatePicker_DateChanged"/>
+        </Grid>
+        <Grid Margin="0,200,0,400">
+            <TextBlock x:Name="DurationTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Duur:" Foreground="Black" FontSize="20"  Width="152"/>
+            <TimePicker x:Name="DurationTimePicker" HorizontalAlignment="Right" Width="223" Margin="0,-10,10,0" TimeChanged="DurationTimePicker_TimeChanged"/>
+        </Grid>
+        <Grid Margin="0,250,0,250">
+            <TextBlock x:Name="DescriptionTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Omschrijving:" Foreground="Black" FontSize="20" Width="152"/>
+            <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="DescriptionTextBox_TextChanged" Height="140"/>
+        </Grid>
+        <Grid Margin="0,400,0,200">
+            <TextBlock x:Name="CostsTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Kosten:" Foreground="Black" FontSize="20" Width="152"/>
+            <TextBox x:Name="CostsTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="CostsTextBox_TextChanged" Height="140"/>
+        </Grid>
+        <Grid Margin="0,450,0,100">
+            <TextBlock x:Name="RemarksTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Opmerkingen:" Foreground="Black" FontSize="20" Width="152"/>
+            <TextBox x:Name="RemarksTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="RemarksTextBox_TextChanged" Height="140"/>
+        </Grid>
+        <Grid Margin="0,550,0,0" Height="64">
+            <Button x:Name="SafeButton" Content="Opslaan" HorizontalAlignment="Center" VerticalAlignment="Top" Template="{StaticResource ButtonControlTemplate}" Width="160" Height="30" Click="SafeButton_Click" Margin="10,0,230,0"/>
+            <Button x:Name="CancelButton" Content="Annuleer" HorizontalAlignment="Center" VerticalAlignment="Top" Template="{StaticResource ButtonControlTemplate}" Width="160" Height="30" Click="CancelButton_Click" Margin="230,0,10,0"/>
+        </Grid>
+    </Grid>
+</Page>
