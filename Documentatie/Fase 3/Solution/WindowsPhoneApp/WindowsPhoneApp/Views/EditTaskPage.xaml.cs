@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,6 +24,11 @@ namespace WindowsPhoneApp.Views
     /// </summary>
     public sealed partial class EditTaskPage : Page
     {
+        public EditTaskPage()
+        {
+            this.InitializeComponent();
+        }
+        
         private App app = (Application.Current as App);
         private TaskViewModel taskViewModel = null;
         private decimal costsValue = 0;
@@ -31,6 +36,7 @@ namespace WindowsPhoneApp.Views
         private bool isDescription = false;
         private bool isCostsDecimal = false;
         private bool[] isValids;
+
         private UserViewModel passedData = null;
 
         public EditTaskPage()
@@ -134,13 +140,13 @@ namespace WindowsPhoneApp.Views
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(StartPage));
+            Frame.Navigate(typeof(ViewTaskPage));
         }
 
         private void EditTask()
         {
             bool result = false;
-
+            
             try
             {
                 result = taskViewModel.UpdateTask(new Task()
@@ -156,8 +162,8 @@ namespace WindowsPhoneApp.Views
 
                 if (result == true)
                 {
-                    app.DisplayMessageBox("Taak is gewijzigd.");
-                    Frame.Navigate(typeof(MainPage));
+                    app.DisplayMessageBox("Taak is gewijzigt.");
+                    //Frame.Navigate(typeof(MainPage));
                 }
             }
             catch

@@ -13,10 +13,11 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WindowsPhoneApp.Views;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace WindowsPhoneApp.Pages
+namespace WindowsPhoneApp.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -39,7 +40,7 @@ namespace WindowsPhoneApp.Pages
         }
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(AddTaskPage));
+            Frame.Navigate(typeof(EditTaskPage));
         }
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -49,11 +50,7 @@ namespace WindowsPhoneApp.Pages
             var result = await msg.ShowAsync();
             if (result.Label == "Ja")
             {
-                Frame.Navigate(typeof(MainMenuPage));
-            }
-            if (result.Label == "Nee")
-            {
-                //
+                Frame.Navigate(typeof(MainPage));
             }
         }
     }
