@@ -35,14 +35,14 @@ namespace WindowsPhoneApp.Views
         private bool isEmail = false;
         private bool isPassword = false;
         private UserViewModel userViewModel = null;
-        private List<UserViewModel> users = null;
+        private ObservableCollection<UserViewModel> users = null;
         private App app = (Application.Current as App);
 
         public RegisterPage()
         {
             this.InitializeComponent();
             userViewModel = new UserViewModel();
-            users = new List<UserViewModel>();
+            users = new ObservableCollection<UserViewModel>();
         }
 
         /// <summary>

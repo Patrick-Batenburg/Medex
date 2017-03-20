@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
 using WindowsPhoneApp.Models;
@@ -147,17 +148,16 @@ namespace WindowsPhoneApp.ViewModels
         /// </summary>
         public TaskViewModel()
         {
-
         }
 
         /// <summary>
         /// Retrieve all tasks of the user.
         /// </summary>
         /// <returns>Returns all information about the tasks.</returns>
-        public List<TaskViewModel> GetTasks()
+        public ObservableCollection<TaskViewModel> GetTasks()
         {
-            List<TaskViewModel> tasks = new List<TaskViewModel>();
-            List<UserMetaViewModel> userMetas = new List<UserMetaViewModel>();
+            ObservableCollection<TaskViewModel> tasks = new ObservableCollection<TaskViewModel>();
+            ObservableCollection<UserMetaViewModel> userMetas = new ObservableCollection<UserMetaViewModel>();
             UserMetaViewModel userMetaViewModel = new UserMetaViewModel();
             userMetas = userMetaViewModel.GetUserMetas();
 
@@ -198,10 +198,10 @@ namespace WindowsPhoneApp.ViewModels
         /// </summary>
         /// <param name="taskId">ID of the task to read.</param>
         /// <returns>Returns all information about the task.</returns>
-        public List<TaskViewModel> GetTask(int taskId)
+        public ObservableCollection<TaskViewModel> GetTask(int taskId)
         {
-            List<TaskViewModel> taskInfo = new List<TaskViewModel>();
-            List<UserMetaViewModel> userMetas = new List<UserMetaViewModel>();
+            ObservableCollection<TaskViewModel> taskInfo = new ObservableCollection<TaskViewModel>();
+            ObservableCollection<UserMetaViewModel> userMetas = new ObservableCollection<UserMetaViewModel>();
             UserMetaViewModel userMetaViewModel = new UserMetaViewModel();
             userMetas = userMetaViewModel.GetUserMetas();
 
@@ -258,7 +258,7 @@ namespace WindowsPhoneApp.ViewModels
         {
             bool result = false;
             bool resultUserMeta = false;
-            List<UserMeta> userMeta = new List<UserMeta>();
+            ObservableCollection<UserMeta> userMeta = new ObservableCollection<UserMeta>();
             UserMetaViewModel userMetaViewModel = new UserMetaViewModel();
 
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
@@ -330,7 +330,7 @@ namespace WindowsPhoneApp.ViewModels
         {
             bool result = false;
             bool resultUserMeta = false;
-            List<UserMeta> userMeta = new List<UserMeta>();
+            ObservableCollection<UserMeta> userMeta = new ObservableCollection<UserMeta>();
             UserMetaViewModel userMetaViewModel = new UserMetaViewModel();
 
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
