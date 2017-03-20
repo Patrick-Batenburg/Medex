@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="WindowsPhoneApp.Views.AddTaskPage"
+    x:Class="WindowsPhoneApp.Views.EditTaskPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WindowsPhoneApp.Views"
@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid Margin="0,0,0,550">
-            <TextBlock x:Name="TitlePageTextBlock" TextAlignment="Center" TextWrapping="Wrap" Text="Nieuwe taak" VerticalAlignment="Center" FontSize="50" Height="67" Width="400" Margin="0,12,0,11" />
+            <TextBlock x:Name="TitlePageTextBlock" TextAlignment="Center" TextWrapping="Wrap" Text="Wijzig taak" VerticalAlignment="Center" FontSize="50" Height="67" Width="400" Margin="0,12,0,11" />
         </Grid>
         <Grid Margin="0,100,0,500">
             <TextBlock x:Name="TitleTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Titel:" Foreground="Black" FontSize="20" Width="152"/>
@@ -18,11 +18,11 @@
         </Grid>
         <Grid Margin="0,150,0,450">
             <TextBlock x:Name="DateTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Datum:" Foreground="Black" FontSize="20" Width="152"/>
-            <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="167,-10,0,0" VerticalAlignment="Top" Height="54" Width="223" DateChanged="DatePicker_DateChanged" DayVisible="True"/>
+            <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="167,-10,0,-4" VerticalAlignment="Top" Height="54" Width="223" DateChanged="DatePicker_DateChanged"/>
         </Grid>
         <Grid Margin="0,200,0,400">
-            <TextBlock x:Name="DurationTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Duur:" Foreground="Black" FontSize="20" Width="152"/>
-            <TimePicker x:Name="DurationTimePicker" HorizontalAlignment="Right" Width="223" Margin="0,-10,10,2" TimeChanged="DurationTimePicker_TimeChanged" Height="48" ClockIdentifier="24HourClock" Time="0"/>
+            <TextBlock x:Name="DurationTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Duur:" Foreground="Black" FontSize="20"  Width="152"/>
+            <TimePicker x:Name="DurationTimePicker" HorizontalAlignment="Right" Width="223" Margin="0,-10,10,0" TimeChanged="DurationTimePicker_TimeChanged"/>
         </Grid>
         <Grid Margin="0,250,0,250">
             <TextBlock x:Name="DescriptionTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Omschrijving:" Foreground="Black" FontSize="20" Width="152"/>
@@ -40,5 +40,6 @@
             <Button x:Name="SafeButton" Content="Opslaan" HorizontalAlignment="Center" VerticalAlignment="Top" Template="{StaticResource ButtonControlTemplate}" Width="160" Height="30" Click="SafeButton_Click" Margin="10,0,230,0"/>
             <Button x:Name="CancelButton" Content="Annuleer" HorizontalAlignment="Center" VerticalAlignment="Top" Template="{StaticResource ButtonControlTemplate}" Width="160" Height="30" Click="CancelButton_Click" Margin="230,0,10,0"/>
         </Grid>
+
     </Grid>
 </Page>
