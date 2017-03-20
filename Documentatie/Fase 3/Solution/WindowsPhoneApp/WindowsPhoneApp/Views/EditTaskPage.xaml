@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="WindowsPhoneApp.Views.AddTaskPage"
+    x:Class="WindowsPhoneApp.Views.EditTaskPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WindowsPhoneApp.Views"
@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid Margin="0,0,0,550">
-            <TextBlock x:Name="TitlePageTextBlock" TextAlignment="Center" TextWrapping="Wrap" Text="Nieuwe taak" VerticalAlignment="Center" FontSize="50" Height="67" Width="400" Margin="0,12,0,11" />
+            <TextBlock x:Name="TitlePageTextBlock" TextAlignment="Center" TextWrapping="Wrap" Text="Wijzigen taak" VerticalAlignment="Center" FontSize="50" Height="67" Width="400" Margin="0,12,0,11" />
         </Grid>
         <Grid Margin="0,100,0,500">
             <TextBlock x:Name="TitleTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Titel:" Foreground="Black" FontSize="20" Width="152"/>

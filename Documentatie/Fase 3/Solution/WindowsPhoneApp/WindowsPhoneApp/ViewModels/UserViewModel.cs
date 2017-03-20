@@ -91,12 +91,15 @@ namespace WindowsPhoneApp.ViewModels
         /// </summary>
         /// <param name="id">ID of the user to read.</param>
         /// <returns>Returns all information about the user.</returns>
-        public User GetUser(int id)
+        public UserViewModel GetUser(int id)
         {
-            User user = new User();
+            UserViewModel user = new UserViewModel();
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
-                User _user = (db.Table<User>().Where(u => u.Id == id)).Single();
+                var _user = (from u in db.Table<User>()
+                             where u.Id == id
+                             select u).Single();
+
                 user.Id = _user.Id;
                 user.Username = _user.Username;
                 user.Password = _user.Password;
@@ -111,25 +114,28 @@ namespace WindowsPhoneApp.ViewModels
         /// <param name="username">Username of the user to read.</param>
         /// <param name="password">Password of the user to read.</param>
         /// <returns>Returns all information about the user.</returns>
-        public User GetUser(string username, string password)
+        public UserViewModel GetUser(string username, string password)
         {
-            User user = new User();
+            UserViewModel user = new UserViewModel();
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
-                var _user = db.Table<User>().Where(u => u.Username == username).Single();
+                var _user = (from u in db.Table<User>()
+                             where u.Username == username && u.Password == password
+                             select u).SingleOrDefault();    
 
                 if (_user != null)
                 {
-                    if (_user.Password == password)
+                    user = new UserViewModel()
                     {
-                        user = new User()
-                        {
-                            Id = _user.Id,
-                            Username = _user.Username,
-                            Password = _user.Password,
-                            Email = _user.Email
-                        };
-                    }
+                        Id = _user.Id,
+                        Username = _user.Username,
+                        Password = _user.Password,
+                        Email = _user.Email
+                    };
+                }
+                else
+                {
+                    user = null;
                 }
             }
             return user;
@@ -139,23 +145,31 @@ namespace WindowsPhoneApp.ViewModels
         /// Retrieve all users.
         /// </summary>
         /// <returns>Returns all information about the users.</returns>
-        public List<User> GetUsers()
+        public List<UserViewModel> GetUsers()
         {
-            List<User> users = new List<User>();
+            List<UserViewModel> users = new List<UserViewModel>();
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
-                var query = db.Table<User>().ToList();
+                var query = (from u in db.Table<User>()
+                             select u).ToList();
 
-                foreach (var _user in query)
+                if (query != null)
                 {
-                    User user = new User()
+                    foreach (var _user in query)
                     {
-                        Id = _user.Id,
-                        Username = _user.Username,
-                        Password = _user.Password,
-                        Email = _user.Email
-                    };
-                    users.Add(user);
+                        UserViewModel user = new UserViewModel()
+                        {
+                            Id = _user.Id,
+                            Username = _user.Username,
+                            Password = _user.Password,
+                            Email = _user.Email
+                        };
+                        users.Add(user);
+                    }
+                }
+                else
+                {
+                    users = null;
                 }
             }
             return users;
@@ -169,12 +183,13 @@ namespace WindowsPhoneApp.ViewModels
         public bool AddUser(User user)
         {
             bool result = false;
-
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
                 try
                 {
-                    var existingUser = (db.Table<Models.User>().Where(u => u.Id == user.Id)).SingleOrDefault();
+                    var existingUser = (from u in db.Table<User>()
+                                        where u.Id == user.Id
+                                        select u).SingleOrDefault();
 
                     if (existingUser == null)
                     {
@@ -198,12 +213,13 @@ namespace WindowsPhoneApp.ViewModels
         public bool UpdateUser(User user)
         {
             bool result = false;
-
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
                 try
                 {
-                    var existingUser = (db.Table<User>().Where(u => u.Id == user.Id)).SingleOrDefault();
+                    var existingUser = (from u in db.Table<User>()
+                                        where u.Id == user.Id
+                                        select u).SingleOrDefault();
 
                     if (existingUser != null)
                     {
@@ -232,7 +248,9 @@ namespace WindowsPhoneApp.ViewModels
             bool result = false;
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
-                var existingUser = (db.Table<User>().Where(u => u.Id == id)).Single();
+                var existingUser = (from u in db.Table<User>()
+                                    where u.Id == id
+                                    select u).Single();
 
                 if (db.Delete(existingUser) > 0)
                 {
@@ -244,16 +262,6 @@ namespace WindowsPhoneApp.ViewModels
                 }
             }
             return result;
-        }
-
-        private void Login()
-        {
-
-        }
-
-        private void Logout()
-        {
-
         }
     }
 }

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Xml.Linq;
-using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -13,12 +10,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WindowsPhoneApp.Models;
-using WindowsPhoneApp.Providers;
 using WindowsPhoneApp.ViewModels;
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace WindowsPhoneApp.Views
@@ -26,8 +22,12 @@ namespace WindowsPhoneApp.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddTaskPage : Page
+    public sealed partial class EditTaskPage : Page
     {
+        public EditTaskPage()
+        {
+            this.InitializeComponent();
+        }
         private App app = (Application.Current as App);
         private TaskViewModel taskViewModel = null;
         private decimal costsValue = 0;
@@ -35,13 +35,6 @@ namespace WindowsPhoneApp.Views
         private bool isDescription = false;
         private bool isCostsDecimal = false;
         private bool[] isValids;
-
-
-        public AddTaskPage()
-        {
-            this.InitializeComponent();
-            taskViewModel = new TaskViewModel();
-        }
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -51,7 +44,7 @@ namespace WindowsPhoneApp.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
-        
+
         private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (TitleTextBox.Text != string.Empty)
@@ -129,22 +122,21 @@ namespace WindowsPhoneApp.Views
             }
             else
             {
-                AddTask();
+                EditTask();
             }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(StartPage));
+            Frame.Navigate(typeof(ViewTaskPage));
         }
 
-        private void AddTask()
+        private void EditTask()
         {
             bool result = false;
-
             try
             {
-                result = taskViewModel.AddTask(new Task()
+                result = taskViewModel.UpdateTask(new Task()
                 {
                     Title = TitleTextBox.Text,
                     Date = DatePicker.Date.DateTime,
@@ -156,7 +148,7 @@ namespace WindowsPhoneApp.Views
 
                 if (result == true)
                 {
-                    app.DisplayMessageBox("Taak is toegevoegd.");
+                    app.DisplayMessageBox("Taak is gewijzigt.");
                     //Frame.Navigate(typeof(MainPage));
                 }
             }

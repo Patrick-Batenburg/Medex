@@ -39,8 +39,7 @@ namespace WindowsPhoneApp
         public string DB_PATH { get; set; }
         public string DB_NAME { get; set; }
         public string DB_FULLNAME { get; set; }
-        public int CurrentUserId { get; set; }
-
+        public int CURRENT_USER_ID { get; set; }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -57,7 +56,6 @@ namespace WindowsPhoneApp
             this.DB_FULLNAME = "task.sqlite";
             this.DB_PATH = Path.Combine(Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FULLNAME));
         }
-
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
@@ -130,7 +128,7 @@ namespace WindowsPhoneApp
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
+                if (!rootFrame.Navigate(typeof(ViewTaskPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
