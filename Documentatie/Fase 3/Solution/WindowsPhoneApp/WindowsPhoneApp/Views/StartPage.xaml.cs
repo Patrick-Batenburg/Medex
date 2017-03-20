@@ -51,12 +51,12 @@ namespace WindowsPhoneApp.Views
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AddTaskPage));
+            Frame.Navigate(typeof(AddTaskPage));
         }
 
         private void TaskListView_ItemClicked(object sender, ItemClickEventArgs e)
         {
-            //Frame.Navigate(typeof(ViewTaskPage), e.ClickedItem);
+            Frame.Navigate(typeof(ViewTaskPage), e.ClickedItem);
         }
     }
 }
