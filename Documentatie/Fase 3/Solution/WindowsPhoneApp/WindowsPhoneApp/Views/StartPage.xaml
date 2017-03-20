@@ -14,7 +14,17 @@
             <Button x:Name="AddButton" Content="+" HorizontalAlignment="Center" VerticalAlignment="Top" Template="{StaticResource CircleButtonControlTemplate}" Width="109" Height="54" Click="AddButton_Click" Margin="291,0,0,0"/>
         </Grid>
         <Grid Margin="0,77,0,0">
-            <ListView x:Name="TaskListView" HorizontalAlignment="Left" Height="563" VerticalAlignment="Top" Width="400" SelectionChanged="TaskListView_SelectionChanged"/>
+        	<Grid.ColumnDefinitions>
+        		<ColumnDefinition/>
+        		<ColumnDefinition Width="0*"/>
+        	</Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100*"/>
+                    <RowDefinition Height="567*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <ListView x:Name="TaskListView" IsItemClickEnabled="True" SelectionMode="None" HorizontalAlignment="Left" Height="563" VerticalAlignment="Top" Width="400" ItemClick="TaskListView_ItemClicked" ItemTemplate="{StaticResource ListViewDataTemplate}"/>
         </Grid>
     </Grid>
 </Page>

@@ -90,8 +90,8 @@ namespace WindowsPhoneApp.ViewModels
             }
         }
 
-        private DateTime date = DateTime.MinValue;
-        public DateTime Date
+        private string date = DateTime.MinValue.ToString("yyyy-MM-dd");
+        public string Date
         {
             get
             { return date; }
@@ -106,8 +106,8 @@ namespace WindowsPhoneApp.ViewModels
             }
         }
 
-        private TimeSpan duration;
-        public TimeSpan Duration
+        private string duration = @"00:00";
+        public string Duration
         {
             get
             { return duration; }
@@ -178,8 +178,8 @@ namespace WindowsPhoneApp.ViewModels
                             Title = _task.Title,
                             Description = _task.Description,
                             Remarks = _task.Remarks,
-                            Date = _task.Date,
-                            Duration = _task.Duration,
+                            Date = _task.Date.ToString("yyyy-MM-dd"),
+                            Duration = String.Format("{0:D2}:{1:D2}",  _task.Duration.Hours, _task.Duration.Minutes),
                             Costs = _task.Costs
                         };
                         tasks.Add(task);
@@ -218,7 +218,7 @@ namespace WindowsPhoneApp.ViewModels
                                  Description = t.Description,
                                  Remarks = t.Remarks,
                                  Date = t.Date,
-                                 Duration = t.Duration,
+                                 Duration = String.Format("{0:D2}:{1:D2}", t.Duration.Hours, t.Duration.Minutes),
                                  Costs = t.Costs
                              });
 
@@ -233,7 +233,7 @@ namespace WindowsPhoneApp.ViewModels
                             Title = _task.Title,
                             Description = _task.Description,
                             Remarks = _task.Remarks,
-                            Date = _task.Date,
+                            Date = _task.Date.ToString("yyyy-MM-dd"),
                             Duration = _task.Duration,
                             Costs = _task.Costs
                         };
