@@ -36,7 +36,6 @@ namespace WindowsPhoneApp.Views
         private bool isCostsDecimal = false;
         private bool[] isValids;
 
-
         public AddTaskPage()
         {
             this.InitializeComponent();
@@ -95,6 +94,7 @@ namespace WindowsPhoneApp.Views
         {
             if (Decimal.TryParse(CostsTextBox.Text, out costsValue))
             {
+                CostsTextBox.Text = Math.Round(costsValue, 2).ToString();
                 isCostsDecimal = true;
             }
             else
@@ -157,7 +157,7 @@ namespace WindowsPhoneApp.Views
                 if (result == true)
                 {
                     app.DisplayMessageBox("Taak is toegevoegd.");
-                    //Frame.Navigate(typeof(MainPage));
+                    Frame.Navigate(typeof(StartPage));
                 }
             }
             catch

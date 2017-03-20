@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -12,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WindowsPhoneApp.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -22,9 +24,14 @@ namespace WindowsPhoneApp.Views
     /// </summary>
     public sealed partial class StartPage : Page
     {
+        private App app = (Application.Current as App);
+        private TaskViewModel taskViewModel = null;
+
         public StartPage()
         {
             this.InitializeComponent();
+            taskViewModel = new TaskViewModel();
+            TaskListView.ItemsSource = taskViewModel.GetTasks();
         }
 
         /// <summary>
@@ -38,7 +45,8 @@ namespace WindowsPhoneApp.Views
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-
+            app.DisplayMessageBox("Uw bent zojuist uit gelogd.");
+            Frame.Navigate(typeof(MainPage));
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -46,9 +54,9 @@ namespace WindowsPhoneApp.Views
             this.Frame.Navigate(typeof(AddTaskPage));
         }
 
-        private void TaskListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TaskListView_ItemClicked(object sender, ItemClickEventArgs e)
         {
-
+            //Frame.Navigate(typeof(ViewTaskPage), e.ClickedItem);
         }
     }
 }
