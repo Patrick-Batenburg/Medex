@@ -144,6 +144,7 @@ namespace WindowsPhoneApp.Views
             {
                 result = taskViewModel.UpdateTask(new Task()
                 {
+                    Id = passedData.TaskId,
                     Title = TitleTextBox.Text,
                     Date = DatePicker.Date.DateTime,
                     Duration = DurationTimePicker.Time,
