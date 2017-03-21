@@ -48,6 +48,12 @@ namespace WindowsPhoneApp.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             passedData = (e.Parameter as TaskViewModel);
+            TitleTextBox.Text = passedData.Title;
+            DescriptionTextBox.Text = passedData.Description;
+            RemarksTextBox.Text = passedData.Remarks;
+            CostsTextBox.Text = passedData.Costs.ToString();
+            //DatePicker.Date = passedData.Date;
+            //DurationTimePicker.Time = passedData.Duration;
         }
         
         private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -133,7 +139,7 @@ namespace WindowsPhoneApp.Views
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(ViewTaskPage));
+            Frame.Navigate(typeof(ViewTaskPage), passedData);
         }
 
         private void EditTask()
