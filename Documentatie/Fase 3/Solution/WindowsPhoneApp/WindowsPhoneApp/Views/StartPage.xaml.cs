@@ -53,7 +53,7 @@ namespace WindowsPhoneApp.Views
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AddTaskPage));
+            Frame.Navigate(typeof(AddTaskPage));
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
