@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows.Input;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WindowsPhoneApp.Models;
 using WindowsPhoneApp.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
@@ -51,12 +53,21 @@ namespace WindowsPhoneApp.Views
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AddTaskPage));
+            Frame.Navigate(typeof(AddTaskPage));
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                var itemId = (e.AddedItems[0] as ListViewItem).Name;
+            }
         }
 
         private void TaskListView_ItemClicked(object sender, ItemClickEventArgs e)
         {
-            //Frame.Navigate(typeof(ViewTaskPage), e.ClickedItem);
+            TaskViewModel clickedItem = (e.ClickedItem as TaskViewModel);
+            Frame.Navigate(typeof(ViewTaskPage), clickedItem);
         }
     }
 }

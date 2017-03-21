@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WindowsPhoneApp.Models;
+using WindowsPhoneApp.ViewModels;
 using WindowsPhoneApp.Views;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
@@ -24,9 +26,15 @@ namespace WindowsPhoneApp.Views
     /// </summary>
     public sealed partial class ViewTaskPage : Page
     {
+        private App app = (Application.Current as App);
+        private TaskViewModel taskViewModel = null;
+        private TaskViewModel passedData = null;
+
         public ViewTaskPage()
         {
             this.InitializeComponent();
+            taskViewModel = new TaskViewModel();
+            passedData = new TaskViewModel();
         }
 
         /// <summary>
@@ -36,11 +44,26 @@ namespace WindowsPhoneApp.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            passedData = (e.Parameter as TaskViewModel);
+            TitlePageTextBlock.Text = passedData.Title;
+            TitleValueTextBlock.Text = passedData.Title;
+            DateValueTextBlock.Text = passedData.Date;
+            DurationValueTextBlock.Text = passedData.Duration;
+            DescriptionValueTextBlock.Text = passedData.Description;
+            CostsValueTextBlock.Text = "€ " + passedData.Costs;
 
+            if (passedData.Remarks == string.Empty)
+            {
+                RemarksValueTextBlock.Text = "Geen opmerkingen opgegeven."; 
+            }
+            else
+            {
+                RemarksValueTextBlock.Text = passedData.Remarks;
+            }
         }
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(EditTaskPage));
+            Frame.Navigate(typeof(EditTaskPage), passedData);
         }
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -50,7 +73,10 @@ namespace WindowsPhoneApp.Views
             var result = await msg.ShowAsync();
             if (result.Label == "Ja")
             {
-                Frame.Navigate(typeof(MainPage));
+                TaskViewModel taskViewModel = new TaskViewModel();
+                taskViewModel.GetTasks().Remove(passedData); //Gaat mis
+                app.DisplayMessageBox("Verwijderen succesvol");
+                Frame.Navigate(typeof(StartPage));
             }
         }
     }

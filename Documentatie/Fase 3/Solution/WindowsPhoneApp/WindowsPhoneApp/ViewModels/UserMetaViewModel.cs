@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using WindowsPhoneApp.ViewModels;
 using WindowsPhoneApp.Models;
+using System.Collections.ObjectModel;
 
 namespace WindowsPhoneApp.ViewModels
 {
@@ -83,9 +84,9 @@ namespace WindowsPhoneApp.ViewModels
         /// Retrieve all user meta.
         /// </summary>
         /// <returns>Returns all information about the user meta.</returns>
-        public List<UserMetaViewModel> GetUserMetas()
+        public ObservableCollection<UserMetaViewModel> GetUserMetas()
         {
-            List<UserMetaViewModel> userMetas = new List<UserMetaViewModel>();
+            ObservableCollection<UserMetaViewModel> userMetas = new ObservableCollection<UserMetaViewModel>();
 
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {

@@ -23,12 +23,7 @@ namespace WindowsPhoneApp.Views
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class EditTaskPage : Page
-    {
-        public EditTaskPage()
-        {
-            this.InitializeComponent();
-        }
-        
+    {       
         private App app = (Application.Current as App);
         private TaskViewModel taskViewModel = null;
         private decimal costsValue = 0;
@@ -36,14 +31,13 @@ namespace WindowsPhoneApp.Views
         private bool isDescription = false;
         private bool isCostsDecimal = false;
         private bool[] isValids;
-
-        private UserViewModel passedData = null;
+        private TaskViewModel passedData = null;
 
         public EditTaskPage()
         {
             this.InitializeComponent();
             taskViewModel = new TaskViewModel();
-            passedData = new UserViewModel();
+            passedData = new TaskViewModel();
         }
 
         /// <summary>
@@ -53,8 +47,13 @@ namespace WindowsPhoneApp.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            UserViewModel data = e.Parameter as UserViewModel;
-            passedData.Id = data.Id;
+            passedData = (e.Parameter as TaskViewModel);
+            TitleTextBox.Text = passedData.Title;
+            DescriptionTextBox.Text = passedData.Description;
+            RemarksTextBox.Text = passedData.Remarks;
+            CostsTextBox.Text = passedData.Costs.ToString();
+            //DatePicker.Date = passedData.Date;
+            //DurationTimePicker.Time = passedData.Duration;
         }
         
         private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -140,7 +139,7 @@ namespace WindowsPhoneApp.Views
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(ViewTaskPage));
+            Frame.Navigate(typeof(ViewTaskPage), passedData);
         }
 
         private void EditTask()
@@ -151,7 +150,7 @@ namespace WindowsPhoneApp.Views
             {
                 result = taskViewModel.UpdateTask(new Task()
                 {
-                    Id = passedData.Id,
+                    Id = passedData.TaskId,
                     Title = TitleTextBox.Text,
                     Date = DatePicker.Date.DateTime,
                     Duration = DurationTimePicker.Time,

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
 using WindowsPhoneApp.Models;
@@ -145,9 +146,9 @@ namespace WindowsPhoneApp.ViewModels
         /// Retrieve all users.
         /// </summary>
         /// <returns>Returns all information about the users.</returns>
-        public List<UserViewModel> GetUsers()
+        public ObservableCollection<UserViewModel> GetUsers()
         {
-            List<UserViewModel> users = new List<UserViewModel>();
+            ObservableCollection<UserViewModel> users = new ObservableCollection<UserViewModel>();
             using (var db = new SQLite.SQLiteConnection(app.DB_PATH))
             {
                 var query = (from u in db.Table<User>()
