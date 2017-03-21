@@ -46,6 +46,7 @@ namespace WindowsPhoneApp.Views
         {
             passedData = (e.Parameter as TaskViewModel);
             TitlePageTextBlock.Text = passedData.Title;
+            TitleValueTextBlock.Text = passedData.Title;
             DateValueTextBlock.Text = passedData.Date;
             DurationValueTextBlock.Text = passedData.Duration;
             DescriptionValueTextBlock.Text = passedData.Description;
@@ -62,7 +63,7 @@ namespace WindowsPhoneApp.Views
         }
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(EditTaskPage));
+            Frame.Navigate(typeof(EditTaskPage), passedData);
         }
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -73,7 +74,7 @@ namespace WindowsPhoneApp.Views
             if (result.Label == "Ja")
             {
                 TaskViewModel taskViewModel = new TaskViewModel();
-                taskViewModel.GetTasks().Remove(passedData);
+                taskViewModel.GetTasks().Remove(passedData); //Gaat mis
                 app.DisplayMessageBox("Verwijderen succesvol");
                 Frame.Navigate(typeof(StartPage));
             }
