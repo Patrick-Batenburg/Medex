@@ -44,9 +44,6 @@ namespace WindowsPhoneApp.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-<<<<<<< HEAD
-            
-=======
             passedData = (e.Parameter as TaskViewModel);
             TitlePageTextBlock.Text = passedData.Title;
             DateValueTextBlock.Text = passedData.Date;
@@ -62,9 +59,6 @@ namespace WindowsPhoneApp.Views
             {
                 RemarksValueTextBlock.Text = passedData.Remarks;
             }
-
-
->>>>>>> origin/test
         }
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
@@ -78,7 +72,10 @@ namespace WindowsPhoneApp.Views
             var result = await msg.ShowAsync();
             if (result.Label == "Ja")
             {
-                Frame.Navigate(typeof(MainPage));
+                TaskViewModel taskViewModel = new TaskViewModel();
+                taskViewModel.GetTasks().Remove(passedData);
+                app.DisplayMessageBox("Verwijderen succesvol");
+                Frame.Navigate(typeof(StartPage));
             }
         }
     }

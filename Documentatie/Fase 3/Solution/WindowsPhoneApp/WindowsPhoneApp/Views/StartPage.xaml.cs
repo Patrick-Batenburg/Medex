@@ -66,12 +66,8 @@ namespace WindowsPhoneApp.Views
 
         private void TaskListView_ItemClicked(object sender, ItemClickEventArgs e)
         {
-<<<<<<< HEAD
-            Frame.Navigate(typeof(ViewTaskPage), e.ClickedItem);
-=======
             TaskViewModel clickedItem = (e.ClickedItem as TaskViewModel);
             Frame.Navigate(typeof(ViewTaskPage), clickedItem);
->>>>>>> origin/test
         }
     }
 }
