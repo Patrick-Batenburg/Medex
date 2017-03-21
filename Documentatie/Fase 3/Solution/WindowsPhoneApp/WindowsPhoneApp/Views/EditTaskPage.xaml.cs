@@ -31,14 +31,13 @@ namespace WindowsPhoneApp.Views
         private bool isDescription = false;
         private bool isCostsDecimal = false;
         private bool[] isValids;
-
-        private UserViewModel passedData = null;
+        private TaskViewModel passedData = null;
 
         public EditTaskPage()
         {
             this.InitializeComponent();
             taskViewModel = new TaskViewModel();
-            passedData = new UserViewModel();
+            passedData = new TaskViewModel();
         }
 
         /// <summary>
@@ -48,8 +47,7 @@ namespace WindowsPhoneApp.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            UserViewModel data = e.Parameter as UserViewModel;
-            passedData.Id = data.Id;
+            passedData = (e.Parameter as TaskViewModel);
         }
         
         private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -146,7 +144,7 @@ namespace WindowsPhoneApp.Views
             {
                 result = taskViewModel.UpdateTask(new Task()
                 {
-                    Id = passedData.Id,
+                    Id = passedData.TaskId,
                     Title = TitleTextBox.Text,
                     Date = DatePicker.Date.DateTime,
                     Duration = DurationTimePicker.Time,

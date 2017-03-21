@@ -24,7 +24,7 @@
                     <RowDefinition Height="567*"/>
                 </Grid.RowDefinitions>
             </Grid>
-            <ListView x:Name="TaskListView" IsItemClickEnabled="True" SelectionMode="None" HorizontalAlignment="Left" Height="563" VerticalAlignment="Top" Width="400" ItemClick="TaskListView_ItemClicked" ItemTemplate="{StaticResource ListViewDataTemplate}"/>
+            <ListView x:Name="TaskListView" IsItemClickEnabled="True" SelectionMode="None" HorizontalAlignment="Left" Height="563" VerticalAlignment="Top" Width="400" ItemClick="TaskListView_ItemClicked" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource ListViewDataTemplate}"/>
         </Grid>
     </Grid>
 </Page>
