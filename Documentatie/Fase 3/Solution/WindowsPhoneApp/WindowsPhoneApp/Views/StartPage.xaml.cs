@@ -49,6 +49,7 @@ namespace WindowsPhoneApp.Views
         {
             app.DisplayMessageBox("Uw bent zojuist uit gelogd.");
             Frame.Navigate(typeof(MainPage));
+            Frame.BackStack.Clear();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

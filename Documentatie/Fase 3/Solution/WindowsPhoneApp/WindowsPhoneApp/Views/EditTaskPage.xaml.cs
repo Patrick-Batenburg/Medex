@@ -27,10 +27,10 @@ namespace WindowsPhoneApp.Views
         private App app = (Application.Current as App);
         private TaskViewModel taskViewModel = null;
         private decimal costsValue = 0;
-        private bool isTitle = false;
-        private bool isDescription = false;
-        private bool isCostsDecimal = false;
-        private bool[] isValids;
+        //private bool isTitle = false;
+        //private bool isDescription = false;
+        //private bool isCostsDecimal = false;
+        //private bool[] isValids;
         private TaskViewModel passedData = null;
 
         public EditTaskPage()
@@ -52,20 +52,12 @@ namespace WindowsPhoneApp.Views
             DescriptionTextBox.Text = passedData.Description;
             RemarksTextBox.Text = passedData.Remarks;
             CostsTextBox.Text = passedData.Costs.ToString();
-            //DatePicker.Date = passedData.Date;
-            //DurationTimePicker.Time = passedData.Duration;
+            DatePicker.Date = Convert.ToDateTime(passedData.Date);
+            DurationTimePicker.Time = TimeSpan.Parse(passedData.Duration);
         }
         
         private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TitleTextBox.Text != string.Empty)
-            {
-                isTitle = true;
-            }
-            else
-            {
-                isTitle = false;
-            }
         }
 
         private void DurationTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -75,14 +67,6 @@ namespace WindowsPhoneApp.Views
 
         private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (DescriptionTextBox.Text != string.Empty)
-            {
-                isDescription = true;
-            }
-            else
-            {
-                isDescription = false;
-            }
         }
 
         private void DatePicker_DateChanged(object sender, DatePickerValueChangedEventArgs e)
@@ -97,14 +81,6 @@ namespace WindowsPhoneApp.Views
 
         private void CostsTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Decimal.TryParse(CostsTextBox.Text, out costsValue))
-            {
-                isCostsDecimal = true;
-            }
-            else
-            {
-                isCostsDecimal = false;
-            }
         }
 
         private void RemarksTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -114,22 +90,17 @@ namespace WindowsPhoneApp.Views
 
         private void SafeButton_Click(object sender, RoutedEventArgs e)
         {
-            isValids = new bool[] { isTitle, isDescription, isCostsDecimal };
-            if (isValids.Contains<bool>(false))
+            if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
             {
-                //search what cause the problem
-                if (isTitle == false)
-                {
-                    app.DisplayMessageBox("Titel is verplicht");
-                }
-                else if (isDescription == false)
-                {
-                    app.DisplayMessageBox("Omschrijving is verplicht");
-                }
-                else if (isCostsDecimal == false)
-                {
-                    app.DisplayMessageBox("Kosten is ongeldig.");
-                }
+                app.DisplayMessageBox("Titel is verplicht");
+            }
+            else if (string.IsNullOrWhiteSpace(DescriptionTextBox.Text))
+            {
+                app.DisplayMessageBox("Omschrijving is verplicht");
+            }
+            else if (!Decimal.TryParse(CostsTextBox.Text, out costsValue))
+            {
+                app.DisplayMessageBox("Kosten is ongeldig.");
             }
             else
             {
@@ -139,13 +110,16 @@ namespace WindowsPhoneApp.Views
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(ViewTaskPage), passedData);
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame != null && rootFrame.CanGoBack)
+            {
+                rootFrame.GoBack();
+            }
         }
 
         private void EditTask()
         {
             bool result = false;
-            
             try
             {
                 result = taskViewModel.UpdateTask(new Task()
@@ -158,11 +132,21 @@ namespace WindowsPhoneApp.Views
                     Remarks = RemarksTextBox.Text,
                     Costs = costsValue
                 });
+                passedData.Title = TitleTextBox.Text;
+                passedData.Date = DatePicker.Date.DateTime.ToString();
+                passedData.Duration = DurationTimePicker.Time.ToString();
+                passedData.Description = DescriptionTextBox.Text;
+                passedData.Remarks = RemarksTextBox.Text;
+                passedData.Costs = costsValue;
 
                 if (result == true)
                 {
                     app.DisplayMessageBox("Taak is gewijzigt.");
-                    //Frame.Navigate(typeof(MainPage));
+                    Frame.Navigate(typeof(StartPage));
+                }
+                else
+                {
+                    throw new Exception();
                 }
             }
             catch
