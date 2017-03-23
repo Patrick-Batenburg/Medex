@@ -43,6 +43,14 @@ namespace WindowsPhoneApp.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (TaskListView.Items.Count > 0)
+            {   
+                TextNoTaskInList.Visibility = Visibility.Collapsed;
+            }    
+            else
+            {
+                TextNoTaskInList.Visibility = Visibility.Visible;
+            }
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
@@ -61,7 +69,7 @@ namespace WindowsPhoneApp.Views
         {
             if (e.AddedItems.Count > 0)
             {
-                var itemId = (e.AddedItems[0] as ListViewItem).Name;
+                var itemId = (e.AddedItems[0] as ListViewItem).Name; 
             }
         }
 
