@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace WindowsPhoneApp.ViewModels
+namespace Medex.ViewModels
 {
     public class ViewModelBase
     {

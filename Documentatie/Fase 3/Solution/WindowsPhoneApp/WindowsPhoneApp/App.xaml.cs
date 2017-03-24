@@ -8,14 +8,14 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using WindowsPhoneApp.Views;
+using Medex.Views;
 using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
-using WindowsPhoneApp.Providers;
+using Medex.Providers;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
-namespace WindowsPhoneApp
+namespace Medex
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
