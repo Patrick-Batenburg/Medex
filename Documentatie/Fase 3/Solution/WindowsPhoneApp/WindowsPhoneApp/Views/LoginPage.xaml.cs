@@ -1,26 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using WindowsPhoneApp.Models;
-using WindowsPhoneApp.Providers;
-using WindowsPhoneApp.ViewModels;
+using Medex.Providers;
+using Medex.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace WindowsPhoneApp.Views
+namespace Medex.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -30,12 +16,14 @@ namespace WindowsPhoneApp.Views
         private App app = (Application.Current as App);
         private UserViewModel userViewModel = null;
         private UserViewModel result = null;
+        private EncryptionProvider encryptionProvider = null;
 
         public LoginPage()
         {
             this.InitializeComponent();
             result = new UserViewModel();
             userViewModel = new UserViewModel();
+            encryptionProvider = new EncryptionProvider();
         }
 
         /// <summary>
@@ -49,7 +37,7 @@ namespace WindowsPhoneApp.Views
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            result = userViewModel.GetUser(UsernameTextBox.Text, EncryptionProvider.Encrypt(PasswordBox.Password));
+            result = userViewModel.GetUser(UsernameTextBox.Text, encryptionProvider.Encrypt(PasswordBox.Password));
 
             if (result != null)
             {

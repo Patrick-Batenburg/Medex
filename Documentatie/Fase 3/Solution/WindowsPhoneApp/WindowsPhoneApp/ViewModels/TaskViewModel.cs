@@ -1,146 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
-using WindowsPhoneApp.Models;
+using Medex.Models;
 
-namespace WindowsPhoneApp.ViewModels
+namespace Medex.ViewModels
 {
     public class TaskViewModel : ViewModelBase
     {
-        #region Properties
-
         private int taskId = 0;
-        public int TaskId
-        {
-            get
-            { return taskId; }
-
-            set
-            {
-                if (taskId == value)
-                { return; }
-
-                taskId = value;
-                RaisePropertyChanged("TaskId");
-            }
-        }
-
         private int userId = 0;
-        public int UserId
-        {
-            get
-            { return userId; }
-
-            set
-            {
-                if (userId == value)
-                { return; }
-
-                userId = value;
-                RaisePropertyChanged("UserId");
-            }
-        }
-
         private string title = string.Empty;
-        public string Title
-        {
-            get
-            { return title; }
-
-            set
-            {
-                if (title == value)
-                { return; }
-
-                title = value;
-                RaisePropertyChanged("Title");
-            }
-        }
-
         private string description = string.Empty;
-        public string Description
-        {
-            get
-            { return description; }
-
-            set
-            {
-                if (description == value)
-                { return; }
-
-                description = value;
-                RaisePropertyChanged("Description");
-            }
-        }
-
         private string remarks = string.Empty;
-        public string Remarks
-        {
-            get
-            { return remarks; }
-
-            set
-            {
-                if (remarks == value)
-                { return; }
-
-                remarks = value;
-                RaisePropertyChanged("Remarks");
-            }
-        }
-
         private string date = DateTime.MinValue.ToString("yyyy-MM-dd");
-        public string Date
-        {
-            get
-            { return date; }
-
-            set
-            {
-                if (date == value)
-                { return; }
-
-                date = value;
-                RaisePropertyChanged("Date");
-            }
-        }
-
         private string duration = @"00:00";
-        public string Duration
-        {
-            get
-            { return duration; }
-
-            set
-            {
-                if (duration == value)
-                { return; }
-
-                duration = value;
-                RaisePropertyChanged("Duration");
-            }
-        }
-
         private decimal costs = 0;
-        public decimal Costs
-        {
-            get
-            { return costs; }
-
-            set
-            {
-                if (costs == value)
-                { return; }
-
-                costs = value;
-                RaisePropertyChanged("Costs");
-            }
-        }
-
-        #endregion "Properties"
-
         private App app = (Application.Current as App);
         
         /// <summary>
@@ -351,5 +226,158 @@ namespace WindowsPhoneApp.ViewModels
             }
             return result;
         }
+
+        public int TaskId
+        {
+            get
+            {
+                return taskId;
+            }
+
+            set
+            {
+                if (taskId == value)
+                {
+                    return;
+                }
+
+                taskId = value;
+                RaisePropertyChanged("TaskId");
+            }
+        }
+
+        public int UserId
+        {
+            get
+            {
+                return userId;
+            }
+
+            set
+            {
+                if (userId == value)
+                {
+                    return;
+                }
+
+                userId = value;
+                RaisePropertyChanged("UserId");
+            }
+        }
+
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+
+            set
+            {
+                if (title == value)
+                {
+                    return;
+                }
+
+                title = value;
+                RaisePropertyChanged("Title");
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+
+            set
+            {
+                if (description == value)
+                {
+                    return;
+                }
+
+                description = value;
+                RaisePropertyChanged("Description");
+            }
+        }
+
+        public string Remarks
+        {
+            get
+            {
+                return remarks;
+            }
+
+            set
+            {
+                if (remarks == value)
+                {
+                    return;
+                }
+
+                remarks = value;
+                RaisePropertyChanged("Remarks");
+            }
+        }
+
+        public string Date
+        {
+            get
+            {
+                return date;
+            }
+
+            set
+            {
+                if (date == value)
+                {
+                    return;
+                }
+
+                date = value;
+                RaisePropertyChanged("Date");
+            }
+        }
+
+        public string Duration
+        {
+            get
+            {
+                return duration;
+            }
+
+            set
+            {
+                if (duration == value)
+                {
+                    return;
+                }
+
+                duration = value;
+                RaisePropertyChanged("Duration");
+            }
+        }
+
+        public decimal Costs
+        {
+            get
+            {
+                return costs;
+            }
+
+            set
+            {
+                if (costs == value)
+                {
+                    return;
+                }
+
+                costs = value;
+                RaisePropertyChanged("Costs");
+            }
+        }
+
     }
 }

@@ -1,34 +1,21 @@
-﻿using SQLite;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using WindowsPhoneApp.Views;
+using Medex.Views;
 using Windows.Phone.UI.Input;
-using Windows.Security.Cryptography;
-using Windows.Storage.Streams;
-using Windows.Security.Cryptography.Core;
 using Windows.UI.Popups;
+using Medex.Providers;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
-namespace WindowsPhoneApp
+namespace Medex
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -36,10 +23,7 @@ namespace WindowsPhoneApp
     public sealed partial class App : Application
     {
         private TransitionCollection transitions;
-        public string DB_PATH { get; set; }
-        public string DB_NAME { get; set; }
-        public string DB_FULLNAME { get; set; }
-        public int CURRENT_USER_ID { get; set; }
+        private SessionProvider sessionProvider = null;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -52,9 +36,12 @@ namespace WindowsPhoneApp
             this.RequestedTheme = ApplicationTheme.Light;
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            sessionProvider = new SessionProvider();
+
             this.DB_NAME = "task";
             this.DB_FULLNAME = "task.sqlite";
             this.DB_PATH = Path.Combine(Path.Combine(ApplicationData.Current.LocalFolder.Path, DB_FULLNAME));
+            this.SALT = "PpTacUKJ";
         }
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
@@ -134,6 +121,8 @@ namespace WindowsPhoneApp
                 }
             }
 
+            sessionProvider.SaveActivatedState();
+
             // Ensure the current window is active
             Window.Current.Activate();
         }
@@ -160,15 +149,26 @@ namespace WindowsPhoneApp
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
+            sessionProvider.SaveDeactivatedState();
 
             // TODO: Save application state and stop any background activity
             deferral.Complete();
         }
 
+        /// <summary>
+        /// Displays a messagebox.
+        /// </summary>
+        /// <param name="message">The message to display.</param>
         public async void DisplayMessageBox(string message)
         {
             MessageDialog msgBox = new MessageDialog(message);
             await msgBox.ShowAsync();
-        } 
+        }
+
+        public string DB_PATH { get; set; }
+        public string DB_NAME { get; set; }
+        public string DB_FULLNAME { get; set; }
+        public string SALT { get; set; }
+        public int CURRENT_USER_ID { get; set; }
     }
 }
