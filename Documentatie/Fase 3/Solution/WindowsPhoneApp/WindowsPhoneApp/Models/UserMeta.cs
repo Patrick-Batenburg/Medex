@@ -1,10 +1,4 @@
-﻿using SQLite;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WindowsPhoneApp.Models
+﻿namespace WindowsPhoneApp.Models
 {
     public class UserMeta
     {

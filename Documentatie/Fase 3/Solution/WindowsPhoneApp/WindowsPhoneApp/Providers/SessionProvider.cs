@@ -1,96 +1,120 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Controls;
+using WindowsPhoneApp.Views;
 
-namespace WindowsPhoneApp
+namespace WindowsPhoneApp.Providers
 {
-    class SessionProvider
+    public class SessionProvider
     {
-        private DispatcherTimer timer;
-        private int totalHours;
-        private long totalTime;
-        private long timeLeft;
-        private bool logOff;
-        TimeSpan ts;
+        private DateTime activated = DateTime.MinValue;
+        private DateTime deactivated = DateTime.MinValue;
+        private TimeSpan result;
 
-        /// <summary>
-        /// SessionManager constructor.
-        /// </summary>
         public SessionProvider()
         {
-            timer = new DispatcherTimer();
-            ts = TimeSpan.FromHours(4);
-            totalTime = ts.Ticks;
-            logOff = false;
+            activated = Activated;
+            deactivated = Deactivated;
         }
 
-        /// <summary>
-        /// SessionManager custom constructor.
-        /// </summary>
-        /// <param name="hours">Number of hours.</param>
-        public SessionProvider(int hours)
+        public SessionProvider(DateTime activated, DateTime deactivated)
         {
-            timer = new DispatcherTimer();
-            totalHours = hours;
-            ts = TimeSpan.FromHours(totalHours);
-            totalTime = ts.Ticks;
-            logOff = false;
+            this.activated = activated;
+            this.deactivated = deactivated;
         }
 
-        /// <summary>
-        /// Starts the timer.
-        /// </summary>
-        public void StartTimer()
+        public DateTime SaveDeactivatedState() 
         {
-            if (timer.IsEnabled == true)
+            bool pageCheck = CheckPage();
+
+            if (pageCheck == false)
             {
-                timer.Stop();
-            }
-
-            timeLeft = totalTime;
-            timer.Tick += TimerTick;
-            timer.Start();
-        }
-
-        /// <summary>
-        /// EventHandler for timer ticks.
-        /// </summary>
-        /// <param name="sender">Sender object.</param>
-        /// <param name="e">Event object.</param>
-        private void TimerTick(object sender, object e)
-        {
-            timeLeft--;
-
-            if (timeLeft <= 0)
-            {
-                timer.Stop();
-                logOff = true;
+                deactivated = DateTime.MinValue;
             }
             else
             {
-                logOff = false;
+                deactivated = DateTime.Now;
             }
+
+            return deactivated;
         }
 
-        /// <summary>
-        /// Checks for session end.
-        /// </summary>
-        /// <returns>Returns true when session is ended or false when it's not.</returns>
-        public bool HasSessionEnded()
+        public DateTime SaveActivatedState()
         {
-            if (logOff == true)
+            bool pageCheck = CheckPage();
+
+            if (pageCheck == false)
             {
-                return logOff;
+                activated = DateTime.MinValue;
             }
             else
             {
-                return logOff;
+                activated = DateTime.Now;
+            }
+
+            return activated;
+        }
+
+        public int GetInactivity()
+        {
+            int result = 0;
+            result = activated.Subtract(deactivated).Hours;
+
+            if (result > 5 && activated.Date != DateTime.MinValue && deactivated.Date != DateTime.MinValue)
+            {
+                var frame = (Frame)Window.Current.Content;
+                frame.Navigate(typeof(MainPage));
+            }
+
+            return result;
+        }
+
+        private bool CheckPage()
+        {
+            bool result = false;
+            var page = (Window.Current.Content as Frame).Content.GetType();
+
+            if (page != typeof(MainPage) && page != typeof(RegisterPage) && page != typeof(LoginPage))
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+        public DateTime Activated 
+        {
+            get
+            {
+                return activated;
+            }
+
+            set
+            {
+                if (activated == DateTime.Now)
+                {
+                    return;
+                }
+
+                activated = value;
+            }
+        }
+
+        public DateTime Deactivated 
+        {
+            get
+            {
+                return deactivated;
+            }
+
+            set
+            {
+                if (deactivated == DateTime.Now)
+                {
+                    return;
+                }
+
+                deactivated = value;
             }
         }
     }
