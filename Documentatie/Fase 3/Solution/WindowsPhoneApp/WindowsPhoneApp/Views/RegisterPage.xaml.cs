@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Security;
+﻿using System.Text.RegularExpressions;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WindowsPhoneApp.Providers;
@@ -37,12 +26,14 @@ namespace WindowsPhoneApp.Views
         private UserViewModel userViewModel = null;
         private ObservableCollection<UserViewModel> users = null;
         private App app = (Application.Current as App);
+        private EncryptionProvider encryptionProvider = null;
 
         public RegisterPage()
         {
             this.InitializeComponent();
             userViewModel = new UserViewModel();
             users = new ObservableCollection<UserViewModel>();
+            encryptionProvider = new EncryptionProvider();
         }
 
         /// <summary>
@@ -57,7 +48,7 @@ namespace WindowsPhoneApp.Views
 
         private void UsernameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-			if (UsernameTextBox.Text.Count() > 2)
+            if (UsernameTextBox.Text.Count() > 2)
             {
                 isUsername = true;
             }
@@ -151,7 +142,7 @@ namespace WindowsPhoneApp.Views
                     {
                         app.DisplayMessageBox("Voer een wachtwoord in.");
                     }
-                    
+
                     if (PasswordBox.Password != RepeatPasswordBox.Password)
                     {
                         app.DisplayMessageBox("Wachtwoord komt niet overeen.");
@@ -202,11 +193,11 @@ namespace WindowsPhoneApp.Views
 
             try
             {
-                result = userViewModel.AddUser(new User() 
-                { 
-                    Email = EmailTextBox.Text.ToLower(), 
-                    Username = UsernameTextBox.Text, 
-                    Password = EncryptionProvider.Encrypt(RepeatPasswordBox.Password) 
+                result = userViewModel.AddUser(new User()
+                {
+                    Email = EmailTextBox.Text.ToLower(),
+                    Username = UsernameTextBox.Text,
+                    Password = encryptionProvider.Encrypt(RepeatPasswordBox.Password)
                 });
                 if (result == true)
                 {
