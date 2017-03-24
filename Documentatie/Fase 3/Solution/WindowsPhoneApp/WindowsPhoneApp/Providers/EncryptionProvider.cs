@@ -3,7 +3,7 @@ using Windows.Storage.Streams;
 using Windows.Security.Cryptography.Core;
 using Windows.UI.Xaml;
 
-namespace WindowsPhoneApp.Providers
+namespace Medex.Providers
 {
     public class EncryptionProvider
     {
