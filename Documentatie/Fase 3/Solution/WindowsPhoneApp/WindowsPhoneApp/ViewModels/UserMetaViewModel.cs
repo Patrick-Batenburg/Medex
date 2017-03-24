@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
-using WindowsPhoneApp.ViewModels;
 using WindowsPhoneApp.Models;
 using System.Collections.ObjectModel;
 
@@ -12,41 +8,9 @@ namespace WindowsPhoneApp.ViewModels
 {
     public class UserMetaViewModel : ViewModelBase
     {
-        #region Properties
-
         private int userId = 0;
-        public int UserId
-        {
-            get
-            { return userId; }
-
-            set
-            {
-                if (userId == value)
-                { return; }
-
-                userId = value;
-                RaisePropertyChanged("UserId");
-            }
-        }
-
         private int taskId = 0;
-        public int TaskId
-        {
-            get
-            { return taskId; }
-
-            set
-            {
-                if (taskId == value)
-                { return; }
-
-                taskId = value;
-                RaisePropertyChanged("TaskId");
-            }
-        }
-
-        #endregion "Properties"
+        private App app = (Application.Current as App);
 
         /// <summary>
         /// Empty constructor.
@@ -55,8 +19,6 @@ namespace WindowsPhoneApp.ViewModels
         {
 
         }
-
-        private App app = (Application.Current as App);
 
         /// <summary>
         /// Retrieve the specific user meta.
@@ -197,6 +159,44 @@ namespace WindowsPhoneApp.ViewModels
                 }
             }
             return result;
+        }
+
+        public int UserId
+        {
+            get
+            {
+                return userId;
+            }
+
+            set
+            {
+                if (userId == value)
+                {
+                    return;
+                }
+
+                userId = value;
+                RaisePropertyChanged("UserId");
+            }
+        }
+
+        public int TaskId
+        {
+            get
+            {
+                return taskId;
+            }
+
+            set
+            {
+                if (taskId == value)
+                {
+                    return;
+                }
+
+                taskId = value;
+                RaisePropertyChanged("TaskId");
+            }
         }
     }
 }

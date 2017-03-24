@@ -1,20 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Windows.Input;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using WindowsPhoneApp.Models;
 using WindowsPhoneApp.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
@@ -43,12 +29,21 @@ namespace WindowsPhoneApp.Views
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (TaskListView.Items.Count > 0)
+            {   
+                TextNoTaskInList.Visibility = Visibility.Collapsed;
+            }    
+            else
+            {
+                TextNoTaskInList.Visibility = Visibility.Visible;
+            }
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             app.DisplayMessageBox("Uw bent zojuist uit gelogd.");
             Frame.Navigate(typeof(MainPage));
+            Frame.BackStack.Clear();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -60,7 +55,7 @@ namespace WindowsPhoneApp.Views
         {
             if (e.AddedItems.Count > 0)
             {
-                var itemId = (e.AddedItems[0] as ListViewItem).Name;
+                var itemId = (e.AddedItems[0] as ListViewItem).Name; 
             }
         }
 

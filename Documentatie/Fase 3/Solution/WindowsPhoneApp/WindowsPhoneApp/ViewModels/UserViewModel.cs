@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
@@ -9,74 +8,10 @@ namespace WindowsPhoneApp.ViewModels
 {
     public class UserViewModel : ViewModelBase
     {
-        #region Properties
-
         private int id = 0;
-        public int Id
-        {
-            get
-            { return id; }
-
-            set
-            {
-                if (id == value)
-                { return; }
-
-                id = value;
-                RaisePropertyChanged("Id");
-            }
-        }
-
         private string username = string.Empty;
-        public string Username
-        {
-            get
-            { return username; }
-
-            set
-            {
-                if (username == value)
-                { return; }
-
-                username = value;
-                RaisePropertyChanged("Username");
-            }
-        }
-
         private string password = string.Empty;
-        public string Password
-        {
-            get
-            { return password; }
-
-            set
-            {
-                if (password == value)
-                { return; }
-
-                password = value;
-                RaisePropertyChanged("Password");
-            }
-        }
-
         private string email = string.Empty;
-        public string Email
-        {
-            get
-            { return email; }
-
-            set
-            {
-                if (email == value)
-                { return; }
-
-                email = value;
-                RaisePropertyChanged("Email");
-            }
-        }
-
-        #endregion "Properties"
-
         private App app = (Application.Current as App);
 
         /// <summary>
@@ -263,6 +198,82 @@ namespace WindowsPhoneApp.ViewModels
                 }
             }
             return result;
+        }
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                if (id == value)
+                {
+                    return;
+                }
+
+                id = value;
+                RaisePropertyChanged("Id");
+            }
+        }
+
+        public string Username
+        {
+            get
+            {
+                return username;
+            }
+
+            set
+            {
+                if (username == value)
+                {
+                    return;
+                }
+
+                username = value;
+                RaisePropertyChanged("Username");
+            }
+        }
+
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+
+            set
+            {
+                if (password == value)
+                {
+                    return;
+                }
+
+                password = value;
+                RaisePropertyChanged("Password");
+            }
+        }
+
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+
+            set
+            {
+                if (email == value)
+                {
+                    return;
+                }
+
+                email = value;
+                RaisePropertyChanged("Email");
+            }
         }
     }
 }

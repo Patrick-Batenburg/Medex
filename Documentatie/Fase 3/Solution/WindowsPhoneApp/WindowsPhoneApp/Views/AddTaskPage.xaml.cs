@@ -1,24 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Xml.Linq;
-using Windows.ApplicationModel;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Markup;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WindowsPhoneApp.Models;
-using WindowsPhoneApp.Providers;
 using WindowsPhoneApp.ViewModels;
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace WindowsPhoneApp.Views
@@ -135,14 +122,18 @@ namespace WindowsPhoneApp.Views
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(StartPage));
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame != null && rootFrame.CanGoBack)
+            {
+                rootFrame.GoBack();
+            }
         }
 
         private void AddTask()
         {
             bool result = false;
 
-            try
+            try 
             {
                 result = taskViewModel.AddTask(new Task()
                 {

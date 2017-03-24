@@ -1,21 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using WindowsPhoneApp.Models;
 using WindowsPhoneApp.ViewModels;
-using WindowsPhoneApp.Views;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -74,8 +62,8 @@ namespace WindowsPhoneApp.Views
             if (result.Label == "Ja")
             {
                 TaskViewModel taskViewModel = new TaskViewModel();
-                taskViewModel.GetTasks().Remove(passedData); //Gaat mis
-                app.DisplayMessageBox("Verwijderen succesvol");
+                taskViewModel.DeleteTask(passedData.TaskId);
+                app.DisplayMessageBox("Taak is succesvol verwijderd.");
                 Frame.Navigate(typeof(StartPage));
             }
         }
