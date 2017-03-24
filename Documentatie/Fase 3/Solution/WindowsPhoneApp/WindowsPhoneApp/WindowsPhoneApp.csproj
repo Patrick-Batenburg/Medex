@@ -7,9 +7,9 @@
     <ProjectGuid>{B5C2610F-A4A9-4A31-B6B5-432CB31BD5F5}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsPhoneApp</RootNamespace>
-    <AssemblyName>WindowsPhoneApp</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <RootNamespace>Medex</RootNamespace>
+    <AssemblyName>Medex</AssemblyName>
+    <DefaultLanguage>nl-NL</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>

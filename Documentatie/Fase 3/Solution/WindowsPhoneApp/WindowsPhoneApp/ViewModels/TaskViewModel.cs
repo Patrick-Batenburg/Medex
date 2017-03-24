@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
-using WindowsPhoneApp.Models;
+using Medex.Models;
 
-namespace WindowsPhoneApp.ViewModels
+namespace Medex.ViewModels
 {
     public class TaskViewModel : ViewModelBase
     {

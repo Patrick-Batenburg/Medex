@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Windows.UI.Xaml;
-using WindowsPhoneApp.Models;
+using Medex.Models;
 using System.Collections.ObjectModel;
 
-namespace WindowsPhoneApp.ViewModels
+namespace Medex.ViewModels
 {
     public class UserMetaViewModel : ViewModelBase
     {

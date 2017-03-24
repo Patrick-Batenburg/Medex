@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WindowsPhoneApp.Views;
+using Medex.Views;
 
-namespace WindowsPhoneApp.Providers
+namespace Medex.Providers
 {
     public class SessionProvider
     {

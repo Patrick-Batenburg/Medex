@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WindowsPhoneApp.Models
+namespace Medex.Models
 {
     public class Task
     {
