@@ -135,14 +135,18 @@ namespace WindowsPhoneApp.Views
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(StartPage));
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame != null && rootFrame.CanGoBack)
+            {
+                rootFrame.GoBack();
+            }
         }
 
         private void AddTask()
         {
             bool result = false;
 
-            try
+            try 
             {
                 result = taskViewModel.AddTask(new Task()
                 {

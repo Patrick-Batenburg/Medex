@@ -74,7 +74,7 @@ namespace WindowsPhoneApp.Views
             if (result.Label == "Ja")
             {
                 TaskViewModel taskViewModel = new TaskViewModel();
-                taskViewModel.GetTasks().Remove(passedData); //Gaat mis
+                taskViewModel.DeleteTask(passedData.TaskId);
                 app.DisplayMessageBox("Verwijderen succesvol");
                 Frame.Navigate(typeof(StartPage));
             }
