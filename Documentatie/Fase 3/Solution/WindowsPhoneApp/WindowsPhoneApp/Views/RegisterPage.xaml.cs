@@ -48,14 +48,19 @@ namespace Medex.Views
 
         private void UsernameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (UsernameTextBox.Text.Count() > 2)
-            {
-                isUsername = true;
-            }
-            else
-            {
-                isUsername = false;
-            }
+            //^(?=.{3,20}$)(?![_.])[a-zA-Z0-9._]+(?<![_.])$
+            // └─────┬────┘└───┬──┘└─────┬─────┘ └────┬───┘
+            //       │         │         │            │           
+            //       │         │         │            │
+            //       │         │         │            no _ or . at the end
+            //       │         │         │
+            //       │         │         allowed characters
+            //       │         │
+            //       │         no _ or . at the beginning
+            //       │
+            //       username is 3-20 characters long
+
+            isUsername = Regex.IsMatch(UsernameTextBox.Text, @"^(?=.{3,20}$)(?![_-])[a-zA-Z0-9-_]+(?<![_-])$", RegexOptions.None);
             TextboxCorrection(UsernameTextBox, isUsername);
         }
 
@@ -64,6 +69,7 @@ namespace Medex.Views
             isEmail = Regex.IsMatch(EmailTextBox.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
             TextboxCorrection(EmailTextBox, isEmail);
         }
+
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (PasswordBox.Password == RepeatPasswordBox.Password && PasswordBox.Password.Count() > 4)
@@ -133,7 +139,7 @@ namespace Medex.Views
                     }
                     else
                     {
-                        app.DisplayMessageBox("Gebruikersnaam is ongeldig");
+                        app.DisplayMessageBox("Gebruikersnaam is ongeldig. Gebruikernaam mag geen speciale tekens bevatten behalve voor _ en -. Gebruikernaam mag niet beginnen en endigen met _ en -.");
                     }
                 }
                 else if (isPassword == false)

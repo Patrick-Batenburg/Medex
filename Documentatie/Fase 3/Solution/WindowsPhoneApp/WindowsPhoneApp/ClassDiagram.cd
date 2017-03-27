@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Medex.Models.Task" Collapsed="true">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAIAiAEAAAAACAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Task.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.Models.User" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.Models.UserMeta" Collapsed="true">
+    <Position X="2.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAgAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserMeta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.App" Collapsed="true">
+    <Position X="2.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAEAAAAAAAgBAAEAAAAAAAAAAABQAgAAAAKQAg=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.ViewModels.ViewModelBase" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.ViewModels.UserViewModel" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAACAAAAAkAQAAAAEAAQAAAAAiECAAAgAAAgA=</HashCode>
+      <FileName>ViewModels\UserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.ViewModels.UserMetaViewModel" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAACAAAAAhAAAgAAAAIACEAAAAAAAA=</HashCode>
+      <FileName>ViewModels\UserMetaViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.ViewModels.TaskViewModel" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAwCJAQIAiAEIAKAACAAgAgBgAAAAJACAAAQAAAAA=</HashCode>
+      <FileName>ViewModels\TaskViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteAsyncConnection" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAACCIAAAAQAAAASAEACABAAAgIAAABIBAAEMA=</HashCode>
+      <FileName>SQLite\SQLiteAsync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.AsyncTableQuery&lt;T&gt;" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIAAAAAAAAAAAAAAgAAACAAAAAkAAAAAAAFAAAAAEQE=</HashCode>
+      <FileName>SQLite\SQLiteAsync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.CreateTablesResult" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLiteAsync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteConnectionPool" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAABAAAAABAEAAAAAAABAAAAAAAAAAAAIABAAAAA=</HashCode>
+      <FileName>SQLite\SQLiteAsync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteConnectionWithLock" Collapsed="true">
+    <Position X="13.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLiteAsync.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteException" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.NotNullConstraintViolationException" Collapsed="true">
+    <Position X="7.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteConnection" Collapsed="true">
+    <Position X="13.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEEABACnAiAbrBBAEQAQQCAWIgRoBQYAIgBCAAEU=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SQLite.SQLiteConnectionString" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAgAAAAIAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.TableAttribute" Collapsed="true">
+    <Position X="14.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.ColumnAttribute" Collapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.PrimaryKeyAttribute" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.AutoIncrementAttribute" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.IndexedAttribute" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.IgnoreAttribute" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.UniqueAttribute" Collapsed="true">
+    <Position X="9.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.MaxLengthAttribute" Collapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.CollationAttribute" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.NotNullAttribute" Collapsed="true">
+    <Position X="14.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.TableMapping" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAMAAiCgCAUAQgAAAQAAACAAAAgAAAAAACQgAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.Orm" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAECAAAAAAAAAAABgAAAAAAAAAAAwAAAAAAAACAAE=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.SQLiteCommand" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAQAYEAAABAEBBAQAAgAABAAAEEAAACAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.PreparedSqlLiteInsertCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAEAAAACAAQAUAAAAAAEACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SQLite.BaseTableQuery" Collapsed="true">
+    <Position X="11.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLite.TableQuery&lt;T&gt;" Collapsed="true">
+    <Position X="11.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EOAAAAAIAICAAVsAIAAARAQABAGIAWA0AgHAQAAAUJA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SQLite.SQLite3" Collapsed="true">
+    <Position X="14.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIJAgUgAAkgALQsCCBlAAQAUYQAAgQAAMAAACICDBAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.Providers.SessionProvider" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAgAAAAAABABACARAAAAAQAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Providers\SessionProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.Providers.EncryptionProvider" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Providers\EncryptionProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.Views.ViewTaskPage" Collapsed="true">
+    <Position X="0.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAIAAAAAAAAAAQEAAAAAAAAAGAAAAAAAAA=</HashCode>
+      <FileName>Views\ViewTaskPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.Views.StartPage" Collapsed="true">
+    <Position X="4.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIABAgAAAAAAAAAgAQAAAAAACAAACAAAAAAAAA=</HashCode>
+      <FileName>Views\StartPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.Views.RegisterPage" Collapsed="true">
+    <Position X="2.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAABBAwAAACAAAAAAABACAQgAAABQAAgACAAAAAAAQA=</HashCode>
+      <FileName>Views\RegisterPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.Views.MainPage" Collapsed="true">
+    <Position X="0.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAQgAAAAAAAAACCAAAAAAAA=</HashCode>
+      <FileName>Views\MainPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.Views.LoginPage" Collapsed="true">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAQAAAAAAAAABAAACAQAAAAAAAAgACCAAAAAAAA=</HashCode>
+      <FileName>Views\LoginPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.Views.EditTaskPage" Collapsed="true">
+    <Position X="2.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBAAAAoQQAAIAAAgAAAAgAQAAgAAEAACACAAABAAAAA=</HashCode>
+      <FileName>Views\EditTaskPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medex.Views.AddTaskPage" Collapsed="true">
+    <Position X="0.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBAAACIQQAAAAAAgQABAgEQAAgAAEAACACAAABAAAAA=</HashCode>
+      <FileName>Views\AddTaskPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="SQLite.SQLiteOpenFlags" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAACAAAAAAAAAAAAAACAIAACkAIEAAIAAAAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SQLite.CreateFlags" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgQAAAIAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>SQLite\SQLite.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
