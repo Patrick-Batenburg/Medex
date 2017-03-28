@@ -14,27 +14,27 @@
         </Grid>
         <Grid Margin="0,100,0,500">
             <TextBlock x:Name="TitleTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Titel:" Foreground="Black" FontSize="20" Width="152"/>
-            <TextBox x:Name="TitleTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="TitleTextBox_TextChanged"/>
+            <TextBox x:Name="TitleTextBox" TabIndex="0" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="TitleTextBox_TextChanged"/>
         </Grid>
         <Grid Margin="0,150,0,450">
             <TextBlock x:Name="DateTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Datum:" Foreground="Black" FontSize="20" Width="152"/>
-            <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="167,-10,0,-4" VerticalAlignment="Top" Height="54" Width="223" DateChanged="DatePicker_DateChanged"/>
+            <DatePicker x:Name="DatePicker" TabIndex="1" HorizontalAlignment="Left" Margin="167,-10,0,-4" VerticalAlignment="Top" Height="54" Width="223" DateChanged="DatePicker_DateChanged"/>
         </Grid>
         <Grid Margin="0,200,0,400">
             <TextBlock x:Name="DurationTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Duur:" Foreground="Black" FontSize="20"  Width="152"/>
-            <TimePicker x:Name="DurationTimePicker" HorizontalAlignment="Right" Width="223" Margin="0,-10,10,0" TimeChanged="DurationTimePicker_TimeChanged" ClockIdentifier="24HourClock" Time="0"/>
+            <TimePicker x:Name="DurationTimePicker" TabIndex="2" HorizontalAlignment="Right" Width="223" Margin="0,-10,10,0" TimeChanged="DurationTimePicker_TimeChanged" ClockIdentifier="24HourClock" Time="0"/>
         </Grid>
         <Grid Margin="0,250,0,250">
             <TextBlock x:Name="DescriptionTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Omschrijving:" Foreground="Black" FontSize="20" Width="152"/>
-            <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="DescriptionTextBox_TextChanged" Height="140"/>
+            <TextBox x:Name="DescriptionTextBox" TabIndex="3" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="DescriptionTextBox_TextChanged" Height="140"/>
         </Grid>
         <Grid Margin="0,400,0,200">
             <TextBlock x:Name="CostsTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Kosten:" Foreground="Black" FontSize="20" Width="152"/>
-            <TextBox x:Name="CostsTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="CostsTextBox_TextChanged" Height="140"/>
+            <TextBox x:Name="CostsTextBox" TabIndex="4" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="CostsTextBox_TextChanged" Height="140"/>
         </Grid>
         <Grid Margin="0,450,0,100">
             <TextBlock x:Name="RemarksTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Opmerkingen:" Foreground="Black" FontSize="20" Width="152"/>
-            <TextBox x:Name="RemarksTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="RemarksTextBox_TextChanged" Height="140"/>
+            <TextBox x:Name="RemarksTextBox" TabIndex="5" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="RemarksTextBox_TextChanged" Height="140"/>
         </Grid>
         <Grid Margin="0,550,0,0" Height="64">
             <Button x:Name="SafeButton" Content="Opslaan" HorizontalAlignment="Center" VerticalAlignment="Top" Template="{StaticResource ButtonControlTemplate}" Width="160" Height="30" Click="SafeButton_Click" Margin="10,0,230,0"/>

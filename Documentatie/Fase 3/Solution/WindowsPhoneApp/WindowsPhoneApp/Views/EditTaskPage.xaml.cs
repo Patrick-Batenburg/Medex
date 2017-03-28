@@ -28,6 +28,8 @@ namespace Medex.Views
             this.InitializeComponent();
             taskViewModel = new TaskViewModel();
             passedData = new TaskViewModel();
+            TitleTextBox.KeyDown += app.OnKeyDown;
+            CostsTextBox.KeyDown += app.OnKeyDown;
         }
 
         /// <summary>
@@ -132,7 +134,7 @@ namespace Medex.Views
                 if (result == true)
                 {
                     app.DisplayMessageBox("Taak is gewijzigd.");
-                    Frame.Navigate(typeof(StartPage));
+                    Frame.Navigate(typeof(ViewTaskPage), passedData);
                 }
                 else
                 {

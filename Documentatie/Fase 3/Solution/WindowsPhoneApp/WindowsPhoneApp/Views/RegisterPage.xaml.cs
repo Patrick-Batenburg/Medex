@@ -34,6 +34,10 @@ namespace Medex.Views
             userViewModel = new UserViewModel();
             users = new ObservableCollection<UserViewModel>();
             encryptionProvider = new EncryptionProvider();
+            EmailTextBox.KeyDown += app.OnKeyDown;
+            UsernameTextBox.KeyDown += app.OnKeyDown;
+            PasswordBox.KeyDown += app.OnKeyDown;
+            RepeatPasswordBox.KeyDown += app.OnKeyDown;
         }
 
         /// <summary>
@@ -98,6 +102,7 @@ namespace Medex.Views
                 }
             }
         }
+
         private void TextboxCorrection(TextBox textbox, bool isValid)
         {
             if (textbox.Text.Count() == 0)
@@ -116,6 +121,7 @@ namespace Medex.Views
                 }
             }
         }
+
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             //bool result = false;

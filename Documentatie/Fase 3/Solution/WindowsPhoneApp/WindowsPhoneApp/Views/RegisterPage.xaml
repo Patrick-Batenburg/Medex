@@ -14,19 +14,19 @@
         </Grid>
         <Grid Margin="0,150,0,450">
             <TextBlock x:Name="EmailTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Email:" Foreground="Black" FontSize="20"  Width="152"/>
-            <TextBox x:Name="EmailTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="EmailTextBox_TextChanged"/>
+            <TextBox x:Name="EmailTextBox" TabIndex="0" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="EmailTextBox_TextChanged"/>
         </Grid>
         <Grid Margin="0,200,0,400">
             <TextBlock x:Name="UsernameTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Gebruikersnaam:" Foreground="Black" FontSize="20" Width="152"/>
-            <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="UsernameTextBox_TextChanged"/>
+            <TextBox x:Name="UsernameTextBox" TabIndex="1" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="UsernameTextBox_TextChanged"/>
         </Grid>
         <Grid Margin="0,250,0,350">
             <TextBlock x:Name="PasswordTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Wachtwoord:" Foreground="Black" FontSize="20" Width="152"/>
-            <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" PasswordChanged="PasswordBox_PasswordChanged" Height="39"/>
+            <PasswordBox x:Name="PasswordBox" TabIndex="2" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" PasswordChanged="PasswordBox_PasswordChanged" Height="39"/>
         </Grid>
         <Grid Margin="0,300,0,250">
             <TextBlock x:Name="RepeatPasswordTextBlock" HorizontalAlignment="Left" Margin="10,0,0,-29" TextWrapping="Wrap" Text="Herhaal wachtwoord:" Foreground="Black" FontSize="20"  Width="152"/>
-            <PasswordBox x:Name="RepeatPasswordBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" PasswordChanged="PasswordBox_PasswordChanged" Height="39"/>
+            <PasswordBox x:Name="RepeatPasswordBox" TabIndex="3" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" PasswordChanged="PasswordBox_PasswordChanged" Height="39"/>
         </Grid>
         <Grid Margin="0,390,0,0" Height="64">
             <Button x:Name="RegisterButton" Content="Registreer" HorizontalAlignment="Center" VerticalAlignment="Top" Template="{StaticResource ButtonControlTemplate}" Width="160" Height="30" Click="RegisterButton_Click"/>

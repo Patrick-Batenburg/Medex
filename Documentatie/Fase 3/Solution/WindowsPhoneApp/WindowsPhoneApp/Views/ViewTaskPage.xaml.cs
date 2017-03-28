@@ -49,16 +49,19 @@ namespace Medex.Views
                 RemarksValueTextBlock.Text = passedData.Remarks;
             }
         }
+
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(EditTaskPage), passedData);
         }
+
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog msg = new MessageDialog("Weet je het zeker?");
             msg.Commands.Add(new UICommand("Ja"));
             msg.Commands.Add(new UICommand("Nee"));
             var result = await msg.ShowAsync();
+
             if (result.Label == "Ja")
             {
                 TaskViewModel taskViewModel = new TaskViewModel();
