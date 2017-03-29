@@ -10,12 +10,10 @@ using System.Collections.ObjectModel;
 using Medex.Models;
 using Windows.UI;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
-
 namespace Medex.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The registerpage where you can register a new user
     /// </summary>
     public sealed partial class RegisterPage : Page
     {
@@ -36,40 +34,55 @@ namespace Medex.Views
             encryptionProvider = new EncryptionProvider();
         }
 
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
         }
-
+        //checks if the username is valid
         private void UsernameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //^(?=.{3,20}$)(?![_.])[a-zA-Z0-9._]+(?<![_.])$
+            //^(?=.{3,20}$)(?![_-])[a-zA-Z0-9._]+(?<![_-])$
             // └─────┬────┘└───┬──┘└─────┬─────┘ └────┬───┘
             //       │         │         │            │           
             //       │         │         │            │
-            //       │         │         │            no _ or . at the end
+            //       │         │         │            no _ or - at the end
             //       │         │         │
             //       │         │         allowed characters
             //       │         │
-            //       │         no _ or . at the beginning
+            //       │         no _ or - at the beginning
             //       │
             //       username is 3-20 characters long
-
             isUsername = Regex.IsMatch(UsernameTextBox.Text, @"^(?=.{3,20}$)(?![_-])[a-zA-Z0-9-_]+(?<![_-])$", RegexOptions.None);
             TextboxCorrection(UsernameTextBox, isUsername);
         }
-
+        //checks if the email is valid
         private void EmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             isEmail = Regex.IsMatch(EmailTextBox.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
             TextboxCorrection(EmailTextBox, isEmail);
         }
 
+        //uses this method as multiple textboxes are using the same code
+        private void TextboxCorrection(TextBox textbox, bool isValid)
+        {
+            if (textbox.Text.Count() == 0)
+            {
+                textbox.Background = null;
+            }
+            else
+            {
+                if (isValid == false)
+                {
+                    textbox.Background = new SolidColorBrush() { Color = Colors.LightPink };
+                }
+                else
+                {
+                    textbox.Background = null;
+                }
+            }
+        }
+
+        //checks if the password is valid
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (PasswordBox.Password == RepeatPasswordBox.Password && PasswordBox.Password.Count() > 4)
@@ -98,36 +111,20 @@ namespace Medex.Views
                 }
             }
         }
-        private void TextboxCorrection(TextBox textbox, bool isValid)
-        {
-            if (textbox.Text.Count() == 0)
-            {
-                textbox.Background = null;
-            }
-            else
-            {
-                if (isValid == false)
-                {
-                    textbox.Background = new SolidColorBrush() { Color = Colors.LightPink };
-                }
-                else
-                {
-                    textbox.Background = null;
-                }
-            }
-        }
+
+        //register the new user if the requirements are met
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            //bool result = false;
+            //Checks if it's valid to save the data
             isValids = new bool[] { isUsername, isEmail, isPassword };
             if (isValids.Contains<bool>(false))
             {
-                //search what cause the problem
+                //search if the problem lies on the E-mail
                 if (isEmail == false)
                 {
                     app.DisplayMessageBox("Ingevulde Email is ongeldig");
                 }
-                else if (isUsername == false)
+                else if (isUsername == false)//checks the username if it's not the E-mail
                 {
                     if (UsernameTextBox.Text == string.Empty)
                     {
@@ -142,7 +139,7 @@ namespace Medex.Views
                         app.DisplayMessageBox("Gebruikersnaam is ongeldig. Gebruikernaam mag geen speciale tekens bevatten behalve voor _ en -. Gebruikernaam mag niet beginnen en endigen met _ en -.");
                     }
                 }
-                else if (isPassword == false)
+                else if (isPassword == false) //checks the password if the problem isn't the username either
                 {
                     if (UsernameTextBox.Text == string.Empty)
                     {
@@ -165,10 +162,11 @@ namespace Medex.Views
             }
             else
             {
-                //register
+                //does a final check before registering
                 users = userViewModel.GetUsers();
                 if (users.Count > 0)
                 {
+                    //checks if an user in the database has the same name as the new user
                     bool hasSameUsernames = false;
                     foreach (UserViewModel user in users)
                     {
@@ -193,6 +191,7 @@ namespace Medex.Views
             }
         }
 
+        //register the new user
         private void RegisterUser()
         {
             bool result = false;
@@ -215,11 +214,6 @@ namespace Medex.Views
             {
                 app.DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
             }
-        }
-
-        private void RepeatPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

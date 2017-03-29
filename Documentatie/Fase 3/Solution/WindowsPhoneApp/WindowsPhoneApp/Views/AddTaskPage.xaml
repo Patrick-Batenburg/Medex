@@ -18,11 +18,11 @@
         </Grid>
         <Grid Margin="0,150,0,450">
             <TextBlock x:Name="DateTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Datum:" Foreground="Black" FontSize="20" Width="152"/>
-            <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="167,-10,0,0" VerticalAlignment="Top" Height="54" Width="223" DateChanged="DatePicker_DateChanged" DayVisible="True" CalendarIdentifier="GregorianCalendar" YearFormat="{}{year.full}" DayFormat="{}{day.integer}"/>
+            <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="167,-10,0,0" VerticalAlignment="Top" Height="54" Width="223" DayVisible="True" CalendarIdentifier="GregorianCalendar" YearFormat="{}{year.full}" DayFormat="{}{day.integer}"/>
         </Grid>
         <Grid Margin="0,200,0,400">
             <TextBlock x:Name="DurationTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Duur:" Foreground="Black" FontSize="20" Width="152"/>
-            <TimePicker x:Name="DurationTimePicker" HorizontalAlignment="Right" Width="223" Margin="0,-10,10,2" TimeChanged="DurationTimePicker_TimeChanged" Height="48" ClockIdentifier="24HourClock" Time="0"/>
+            <TimePicker x:Name="DurationTimePicker" HorizontalAlignment="Right" Width="223" Margin="0,-10,10,2"  Height="48" ClockIdentifier="24HourClock" Time="0"/>
         </Grid>
         <Grid Margin="0,250,0,250">
             <TextBlock x:Name="DescriptionTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Omschrijving:" Foreground="Black" FontSize="20" Width="152"/>
@@ -34,7 +34,7 @@
         </Grid>
         <Grid Margin="0,450,0,100">
             <TextBlock x:Name="RemarksTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Opmerkingen:" Foreground="Black" FontSize="20" Width="152"/>
-            <TextBox x:Name="RemarksTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="RemarksTextBox_TextChanged" Height="140"/>
+            <TextBox x:Name="RemarksTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" Height="140"/>
         </Grid>
         <Grid Margin="0,550,0,0" Height="64">
             <Button x:Name="SafeButton" Content="Opslaan" HorizontalAlignment="Center" VerticalAlignment="Top" Template="{StaticResource ButtonControlTemplate}" Width="160" Height="30" Click="SafeButton_Click" Margin="10,0,230,0"/>
