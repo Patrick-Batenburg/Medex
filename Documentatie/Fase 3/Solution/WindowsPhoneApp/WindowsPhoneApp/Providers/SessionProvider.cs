@@ -9,7 +9,7 @@ namespace Medex.Providers
     {
         private DateTime activated = DateTime.MinValue;
         private DateTime deactivated = DateTime.MinValue;
-        private TimeSpan result;
+        //private TimeSpan result;
 
         public SessionProvider()
         {

@@ -6,12 +6,10 @@ using Windows.UI.Xaml.Navigation;
 using Medex.Models;
 using Medex.ViewModels;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
-
 namespace Medex.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The page where you can add a new task
     /// </summary>
     public sealed partial class AddTaskPage : Page
     {
@@ -30,16 +28,11 @@ namespace Medex.Views
             TitleTextBox.KeyDown += app.OnKeyDown;
             CostsTextBox.KeyDown += app.OnKeyDown;
         }
-
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
         
+        //Checks if the text is valid as a title
         private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (TitleTextBox.Text != string.Empty)
@@ -52,11 +45,7 @@ namespace Medex.Views
             }
         }
 
-        private void DurationTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+        //checks if the text is valid as a description
         private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (DescriptionTextBox.Text != string.Empty)
@@ -69,16 +58,7 @@ namespace Medex.Views
             }
         }
 
-        private void DatePicker_DateChanged(object sender, DatePickerValueChangedEventArgs e)
-        {
-
-        }
-
-        private void DurationTimePicker_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
-        {
-
-        }
-
+        //checks if the text is valid as costs
         private void CostsTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (Decimal.TryParse(CostsTextBox.Text, out costsValue))
@@ -92,13 +72,10 @@ namespace Medex.Views
             }
         }
 
-        private void RemarksTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+        //make a control if the task is valid to be added
         private void SafeButton_Click(object sender, RoutedEventArgs e)
         {
+            //checks if any of the bools are incorrect
             isValids = new bool[] { isTitle, isDescription, isCostsDecimal };
             if (isValids.Contains<bool>(false))
             {
@@ -118,10 +95,12 @@ namespace Medex.Views
             }
             else
             {
+                //if there are no flaws found, then it'll add the task successfully
                 AddTask();
             }
         }
 
+        //cancels the action and returns to main menu
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
@@ -131,10 +110,10 @@ namespace Medex.Views
             }
         }
 
+        //adds the new task
         private void AddTask()
         {
             bool result = false;
-
             try 
             {
                 result = taskViewModel.AddTask(new Task()
@@ -153,9 +132,10 @@ namespace Medex.Views
                     Frame.Navigate(typeof(StartPage));
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                app.DisplayMessageBox("Er is een onbekent probleem opgetreden, probeer het later opnieuw.");
+                //in case the application run into a problem, it'll cancel 
+                app.DisplayMessageBox(string.Format("Er is een onbekent probleem opgetreden, probeer het later opnieuw./nfoutcode: {0} ", ex.ToString()));
             }
         }
     }

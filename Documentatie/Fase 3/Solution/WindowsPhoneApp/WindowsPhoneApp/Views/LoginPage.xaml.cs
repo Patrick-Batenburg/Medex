@@ -4,12 +4,10 @@ using Windows.UI.Xaml.Navigation;
 using Medex.Providers;
 using Medex.ViewModels;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
-
 namespace Medex.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The page where you can login as user
     /// </summary>
     public sealed partial class LoginPage : Page
     {
@@ -26,15 +24,12 @@ namespace Medex.Views
             encryptionProvider = new EncryptionProvider();
         }
 
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+
         }
 
+        //checks if the user exist in the database, and if the users' password is correct
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             result = userViewModel.GetUser(UsernameTextBox.Text, encryptionProvider.Encrypt(PasswordBox.Password));
@@ -49,16 +44,6 @@ namespace Medex.Views
             {
                 app.DisplayMessageBox("Gebruikersnaam of wachtwoord is onjuist.");
             }
-        }
-
-        private void UsernameTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -92,7 +92,7 @@ namespace Medex.ViewModels
                     }
                     result = true;
                 }
-                catch (Exception ex)
+                catch
                 {
                     result = false;
                 }
@@ -125,7 +125,7 @@ namespace Medex.ViewModels
                     }
                     result = true;
                 }
-                catch (Exception ex)
+                catch
                 {
                     result = false;
                 }

@@ -14,11 +14,11 @@
         </Grid>
         <Grid Margin="0,200,0,300">
             <TextBlock x:Name="UsernameTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Text="Gebruikersnaam:" Foreground="Black" FontSize="20" RenderTransformOrigin="0.105,0.755" Width="152" Height="39"/>
-            <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" TextChanged="UsernameTextBox_TextChanged"/>
+            <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" />
         </Grid>
         <Grid Margin="0,250,0,350">
             <TextBlock x:Name="PasswordTextBlock" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Text="Wachtwoord:" Foreground="Black" FontSize="20" RenderTransformOrigin="0.105,0.755" Width="152" Height="39"/>
-            <PasswordBox x:Name="PasswordBox"  HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223" PasswordChanged="PasswordBox_PasswordChanged"/>
+            <PasswordBox x:Name="PasswordBox"  HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="223"/>
         </Grid>
         <Grid Margin="0,350,0,220">
             <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" Template="{StaticResource ButtonControlTemplate}" Width="160" Height="30" Click="LoginButton_Click"/>
