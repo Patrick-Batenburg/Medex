@@ -25,6 +25,7 @@ namespace Medex.Views
             TitleTextBox.KeyDown += app.OnKeyDown;
             CostsTextBox.KeyDown += app.OnKeyDown;
         }
+
         //puts the passed data in the page, editing in the textboxes with the data
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
