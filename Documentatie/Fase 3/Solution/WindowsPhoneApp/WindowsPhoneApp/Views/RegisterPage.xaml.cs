@@ -115,26 +115,6 @@ namespace Medex.Views
                 }
             }
         }
-
-        //register the new user if the requirements are met
-        private void TextboxCorrection(TextBox textbox, bool isValid)
-        {
-            if (textbox.Text.Count() == 0)
-            {
-                textbox.Background = null;
-            }
-            else
-            {
-                if (isValid == false)
-                {
-                    textbox.Background = new SolidColorBrush() { Color = Colors.LightPink };
-                }
-                else
-                {
-                    textbox.Background = null;
-                }
-            }
-        }
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             //Checks if it's valid to save the data
