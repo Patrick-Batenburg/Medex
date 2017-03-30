@@ -60,10 +60,11 @@ namespace Medex.Providers
             int result = 0;
             result = activated.Subtract(deactivated).Hours;
 
-            if (result > 5 && activated.Date != DateTime.MinValue && deactivated.Date != DateTime.MinValue)
+            if (result > 4 && activated.Date != DateTime.MinValue && deactivated.Date != DateTime.MinValue)
             {
                 var frame = (Frame)Window.Current.Content;
                 frame.Navigate(typeof(MainPage));
+                frame.BackStack.Clear();
             }
 
             return result;

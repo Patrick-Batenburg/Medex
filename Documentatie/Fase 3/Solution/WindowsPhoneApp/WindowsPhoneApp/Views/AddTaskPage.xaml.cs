@@ -25,6 +25,8 @@ namespace Medex.Views
         {
             this.InitializeComponent();
             taskViewModel = new TaskViewModel();
+            TitleTextBox.KeyDown += app.OnKeyDown;
+            CostsTextBox.KeyDown += app.OnKeyDown;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

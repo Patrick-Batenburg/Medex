@@ -12,6 +12,8 @@ using Medex.Views;
 using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
 using Medex.Providers;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Core;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -122,7 +124,7 @@ namespace Medex
             }
 
             sessionProvider.SaveActivatedState();
-
+            sessionProvider.GetInactivity();
             // Ensure the current window is active
             Window.Current.Activate();
         }
@@ -163,6 +165,14 @@ namespace Medex
         {
             MessageDialog msgBox = new MessageDialog(message);
             await msgBox.ShowAsync();
+        }
+
+        public void OnKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            }
         }
 
         public string DB_PATH { get; set; }

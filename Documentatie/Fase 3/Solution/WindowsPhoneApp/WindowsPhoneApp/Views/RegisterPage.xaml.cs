@@ -32,6 +32,10 @@ namespace Medex.Views
             userViewModel = new UserViewModel();
             users = new ObservableCollection<UserViewModel>();
             encryptionProvider = new EncryptionProvider();
+            EmailTextBox.KeyDown += app.OnKeyDown;
+            UsernameTextBox.KeyDown += app.OnKeyDown;
+            PasswordBox.KeyDown += app.OnKeyDown;
+            RepeatPasswordBox.KeyDown += app.OnKeyDown;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -113,6 +117,24 @@ namespace Medex.Views
         }
 
         //register the new user if the requirements are met
+        private void TextboxCorrection(TextBox textbox, bool isValid)
+        {
+            if (textbox.Text.Count() == 0)
+            {
+                textbox.Background = null;
+            }
+            else
+            {
+                if (isValid == false)
+                {
+                    textbox.Background = new SolidColorBrush() { Color = Colors.LightPink };
+                }
+                else
+                {
+                    textbox.Background = null;
+                }
+            }
+        }
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             //Checks if it's valid to save the data

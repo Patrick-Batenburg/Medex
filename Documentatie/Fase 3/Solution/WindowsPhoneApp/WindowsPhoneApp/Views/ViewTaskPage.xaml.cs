@@ -44,7 +44,6 @@ namespace Medex.Views
             }
         }
 
-
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(EditTaskPage), passedData);
@@ -57,6 +56,7 @@ namespace Medex.Views
             msg.Commands.Add(new UICommand("Ja"));
             msg.Commands.Add(new UICommand("Nee"));
             var result = await msg.ShowAsync();
+
             if (result.Label == "Ja")
             {
                 //erasing the task once 'Yes' is clicked

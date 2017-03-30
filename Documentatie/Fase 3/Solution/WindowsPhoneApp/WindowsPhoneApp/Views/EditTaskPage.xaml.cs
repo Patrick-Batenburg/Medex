@@ -22,6 +22,8 @@ namespace Medex.Views
             this.InitializeComponent();
             taskViewModel = new TaskViewModel();
             passedData = new TaskViewModel();
+            TitleTextBox.KeyDown += app.OnKeyDown;
+            CostsTextBox.KeyDown += app.OnKeyDown;
         }
         //puts the passed data in the page, editing in the textboxes with the data
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -86,7 +88,7 @@ namespace Medex.Views
                 if (result == true)
                 {
                     app.DisplayMessageBox("Taak is gewijzigd.");
-                    Frame.Navigate(typeof(StartPage));
+                    Frame.Navigate(typeof(ViewTaskPage), passedData);
                 }
                 else
                 {
