@@ -180,5 +180,7 @@ namespace Medex
         public string DB_FULLNAME { get; set; }
         public string SALT { get; set; }
         public int CURRENT_USER_ID { get; set; }
+        public string USERNAME { get; set; }
+        public string PASSWORD { get; set; }
     }
 }

@@ -115,6 +115,7 @@ namespace Medex.Views
                 }
             }
         }
+
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             //Checks if it's valid to save the data
