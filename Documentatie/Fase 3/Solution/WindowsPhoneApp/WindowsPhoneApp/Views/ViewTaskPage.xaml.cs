@@ -5,12 +5,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Medex.ViewModels;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace Medex.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The viewtaskpage where you view the task
     /// </summary>
     public sealed partial class ViewTaskPage : Page
     {
@@ -24,12 +23,7 @@ namespace Medex.Views
             taskViewModel = new TaskViewModel();
             passedData = new TaskViewModel();
         }
-
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
+        //sets the passed over data in the textblocks
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             passedData = (e.Parameter as TaskViewModel);
@@ -55,6 +49,7 @@ namespace Medex.Views
             Frame.Navigate(typeof(EditTaskPage), passedData);
         }
 
+        //Displays a dialogbox to warn you about erasing the task from the database.
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog msg = new MessageDialog("Weet je het zeker?");
@@ -64,6 +59,7 @@ namespace Medex.Views
 
             if (result.Label == "Ja")
             {
+                //erasing the task once 'Yes' is clicked
                 TaskViewModel taskViewModel = new TaskViewModel();
                 taskViewModel.DeleteTask(passedData.TaskId);
                 app.DisplayMessageBox("Taak is succesvol verwijderd.");

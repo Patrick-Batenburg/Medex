@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Medex.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The start page of the application
     /// </summary>
     public sealed partial class MainPage : Page
     {
@@ -16,11 +16,6 @@ namespace Medex.Views
         {
             this.InitializeComponent();
         }
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
@@ -32,11 +27,6 @@ namespace Medex.Views
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(RegisterPage));
-        }
-
-        private void LoginTextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

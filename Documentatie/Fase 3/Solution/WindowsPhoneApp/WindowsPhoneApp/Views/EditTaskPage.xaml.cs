@@ -5,22 +5,16 @@ using Windows.UI.Xaml.Navigation;
 using Medex.Models;
 using Medex.ViewModels;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
-
 namespace Medex.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The code of the page where you can edit the selected task
     /// </summary>
     public sealed partial class EditTaskPage : Page
     {       
         private App app = (Application.Current as App);
         private TaskViewModel taskViewModel = null;
         private decimal costsValue = 0;
-        //private bool isTitle = false;
-        //private bool isDescription = false;
-        //private bool isCostsDecimal = false;
-        //private bool[] isValids;
         private TaskViewModel passedData = null;
 
         public EditTaskPage()
@@ -31,12 +25,7 @@ namespace Medex.Views
             TitleTextBox.KeyDown += app.OnKeyDown;
             CostsTextBox.KeyDown += app.OnKeyDown;
         }
-
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
+        //puts the passed data in the page, editing in the textboxes with the data
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             passedData = (e.Parameter as TaskViewModel);
@@ -47,39 +36,8 @@ namespace Medex.Views
             DatePicker.Date = Convert.ToDateTime(passedData.Date);
             DurationTimePicker.Time = TimeSpan.Parse(passedData.Duration);
         }
-        
-        private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
 
-        private void DurationTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
-
-        private void DatePicker_DateChanged(object sender, DatePickerValueChangedEventArgs e)
-        {
-
-        }
-
-        private void DurationTimePicker_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
-        {
-
-        }
-
-        private void CostsTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
-
-        private void RemarksTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+        //Checks if it's valid to save the data
         private void SafeButton_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
@@ -96,10 +54,12 @@ namespace Medex.Views
             }
             else
             {
+                //if it's valid, it's saving them
                 EditTask();
             }
         }
 
+        //cancels the current action and returns to main menu
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
@@ -109,6 +69,7 @@ namespace Medex.Views
             }
         }
 
+        //Saves the new data
         private void EditTask()
         {
             bool result = false;
@@ -124,13 +85,6 @@ namespace Medex.Views
                     Remarks = RemarksTextBox.Text,
                     Costs = costsValue
                 });
-                passedData.Title = TitleTextBox.Text;
-                passedData.Date = DatePicker.Date.DateTime.ToString();
-                passedData.Duration = DurationTimePicker.Time.ToString();
-                passedData.Description = DescriptionTextBox.Text;
-                passedData.Remarks = RemarksTextBox.Text;
-                passedData.Costs = costsValue;
-
                 if (result == true)
                 {
                     app.DisplayMessageBox("Taak is gewijzigd.");
@@ -138,6 +92,7 @@ namespace Medex.Views
                 }
                 else
                 {
+                    //if results didn't turned out well, it's throwing an exception, cancelling the attempt
                     throw new Exception();
                 }
             }
