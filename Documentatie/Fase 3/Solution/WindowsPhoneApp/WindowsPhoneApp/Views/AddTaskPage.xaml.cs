@@ -28,6 +28,7 @@ namespace Medex.Views
             TitleTextBox.KeyDown += app.OnKeyDown;
             CostsTextBox.KeyDown += app.OnKeyDown;
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }

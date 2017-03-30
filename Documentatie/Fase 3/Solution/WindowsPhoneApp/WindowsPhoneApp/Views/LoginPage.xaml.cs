@@ -22,6 +22,12 @@ namespace Medex.Views
             result = new UserViewModel();
             userViewModel = new UserViewModel();
             encryptionProvider = new EncryptionProvider();
+
+            if (app.USERNAME != null && app.PASSWORD != null)
+            {
+                UsernameTextBox.Text = app.USERNAME;
+                PasswordBox.Password = app.PASSWORD;  
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -39,6 +45,8 @@ namespace Medex.Views
                 app.CURRENT_USER_ID = result.Id;
                 app.DisplayMessageBox("Welkom " + result.Username);
                 this.Frame.Navigate(typeof(StartPage));
+                app.USERNAME = UsernameTextBox.Text;
+                app.PASSWORD = PasswordBox.Password;
             }
             else
             {
