@@ -86,14 +86,6 @@ namespace Medex.Views
                     Remarks = RemarksTextBox.Text,
                     Costs = costsValue
                 });
-
-                passedData.Title = TitleTextBox.Text;
-                passedData.Date = DatePicker.Date.DateTime.ToString();
-                passedData.Duration = DurationTimePicker.Time.ToString();
-                passedData.Description = DescriptionTextBox.Text;
-                passedData.Remarks = RemarksTextBox.Text;
-                passedData.Costs = costsValue;
-
                 if (result == true)
                 {
                     app.DisplayMessageBox("Taak is gewijzigd.");

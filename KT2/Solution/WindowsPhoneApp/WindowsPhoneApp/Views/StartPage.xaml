@@ -1,0 +1,31 @@
+<Page
+    x:Class="Medex.Views.StartPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Medex.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid Margin="0,0,0,550" Height="64">
+            <Button x:Name="LogoutButton" Content="Uitloggen" HorizontalAlignment="Center" VerticalAlignment="Top" Template="{StaticResource ButtonControlTemplate}" Width="160" Height="54" Click="LogoutButton_Click" Margin="10,0,230,0"/>
+            <Button x:Name="AddButton" Content="+" HorizontalAlignment="Center" VerticalAlignment="Top" Template="{StaticResource CircleButtonControlTemplate}" Width="109" Height="54" Click="AddButton_Click" Margin="291,0,0,0"/>
+        </Grid>
+        <Grid Margin="0,77,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100*"/>
+                    <RowDefinition Height="567*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <ListView x:Name="TaskListView" IsItemClickEnabled="True" SelectionMode="None" HorizontalAlignment="Left" Height="563" VerticalAlignment="Top" Width="400" ItemClick="TaskListView_ItemClicked" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource ListViewDataTemplate}"/>
+        </Grid>
+        <TextBlock x:Name="TextNoTaskInList" HorizontalAlignment="Left" Margin="30,123,0,0" TextWrapping="Wrap" Text="Er zijn geen taken om weer te geven" VerticalAlignment="Top" FontSize="20" Width="340" Visibility="Collapsed"/>
+    </Grid>
+</Page>
